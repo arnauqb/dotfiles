@@ -9,7 +9,7 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 files="bashrc i3blocks.conf vimrc zshrc xinitrc Xmodmap Xresources zshrc"    # list of files/folders to symlink in homedir
-
+files_config="i3 termite"
 ##########
 
 # create dotfiles_old in homedir
@@ -29,3 +29,7 @@ for file in $files; do
 		    echo "Creating symlink to $file in home directory."
 		        ln -s $dir/$file ~/.$file
 		done
+for file_config in $files_config; do
+  mkdir -p ~/.config/$file_config
+  ln -s $dir/$file_config ~/.config/$file_config/config
+done
