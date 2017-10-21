@@ -195,10 +195,11 @@ exec_always --no-startup-id nm-applet
 #wallpaper
 exec_always feh --bg-scale ~/Pictures/wallpaper.png
 #aplicacions
-bindsym $mod+g exec google-chrome
+bindsym $mod+g exec firefox
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+n exec gnome-terminal -e ranger
 bindsym $mod+shift+n exec nautilus 
 exec_always compton -f
 exec redshift-gtk
+exec --no-startup-id run_polybar.sh
 
