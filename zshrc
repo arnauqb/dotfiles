@@ -7,7 +7,6 @@ export ZSH=/home/arnau/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -55,6 +54,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+ZSH_THEME=""
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -85,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
 	    source ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-    fi
+fi
 
 # added by Anaconda3 4.3.1 installer
 export PATH="/home/arnau/anaconda3/bin:$PATH"
@@ -93,7 +93,7 @@ export PATH="/home/arnau/.bin:$PATH"
 #export PATH="/usr/local/hdf5:$PATH"
 export PATH="/home/arnau/installed/jd2:$PATH"
 #make wal change terminal colors
-#(wal -r -t &)
+(wal -r -t &)
 eval $(thefuck --alias)
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
@@ -101,3 +101,4 @@ alias bm='bashmount'
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export EDITOR="vim"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

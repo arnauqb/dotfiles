@@ -1,11 +1,7 @@
 syntax on
+filetype plugin indent on
 "spellcheck
 filetype off
-if &term =~ '256color'
-    " Disable Background Color Erase (BCE) so that color schemes
-    " work properly when Vim is used inside tmux and GNU screen.
-    set t_ut=
-endif
 set backspace=indent,eol,start
 set number
 set relativenumber
@@ -15,13 +11,13 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
-set termguicolors
 call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
 Plug 'chriskempson/base16-vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdtree'
 "Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'vim-airline/vim-airline'
 Plug 'brennier/quicktex'
 Plug 'vim-airline/vim-airline-themes'
@@ -29,14 +25,32 @@ Plug 'kien/ctrlp.vim'
 Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jdkanani/vim-material-theme'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 call plug#end()
-filetype plugin indent on
-"let base16colorspace=256  " Access colors present in 256 colorspace
-let g:airline_theme='base16_default'
-"benjamin things
-colorscheme material-theme "base16-gruvbox-dark-hard
+"COLORSCHEME
 set background=dark
-hi Normal guibg=NONE ctermbg=NONE
+colorscheme gruvbox
+"if filereadable(expand("~/.vimrc_background"))
+  "let base16colorspace=256
+""  set background=dark
+"  source ~/.vimrc_background
+"endif
+"let base16colorspace=256  " Access colors present in 256 colorspace
+"set termguicolors
+"if &term =~ '256color'
+"    " Disable Background Color Erase (BCE) so that color schemes
+"    " work properly when Vim is used inside tmux and GNU screen.
+"    set t_ut=
+"endif
+""set t_Co=256
+"colorscheme base16-gruvbox-dark-hard
+"set background=dark
+""hi Normal ctermbg=Black
+highlight LineNr ctermfg=DarkGray ctermbg=black
+let g:airline_theme='base16_default'
+
+"benjamin things
 set nocompatible
 set ts=4 "tab 4
 set tabstop=4
@@ -57,7 +71,7 @@ set splitright
 "read pdfs
 :command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
 "transparency
-hi Normal guibg=NONE ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE
 "tab numbering for easier navigation
 let g:tex_flavor = "latex"
 if exists('g:quicktex_tex') && !exists('g:quicktex_math')
@@ -96,7 +110,7 @@ let g:quicktex_math = {
     \'Pphi'    : 'P_{\phi\phi}\left(<+++>\right)<++> ',
     \'pdel'    : 'P_{\delta\delta}(<+++>) <++>',
     \'Pdel'    : 'P_{\delta\delta}\left(<+++>\right)<++>',
-    \'growth'  : '\left(\frac{D_+}{a}\right)',
+    \'growth'  : '\left(\frac{D_+(a)}{a}\right)',
     \'spt' : "\\begin{split}\<CR><+++>\<CR>\\end{split}",
 	\'om'      : '\Omega_{m}',
     \'ho'      : 'H_0',
