@@ -6,6 +6,7 @@ foreground      = #d5c4a1
 foreground_bold = #ebdbb2
 cursor          = #ebdbb2
 background      = #1d2021
+#background = rgba(24,19,24,.99)
 
 # 16 color space
 
@@ -49,8 +50,8 @@ color21 = #ebdbb2
 
 #vim: ft=dosini cms=#%s
 [options]
-font = Meslo LG M for Powerline 12
-#font = Roboto Mono Light for Powerline 
+font = Meslo LG M for Powerline 14
+#font = Roboto Mono for Powerline, 14
 #font = Droid Sans Mono 8
 
 

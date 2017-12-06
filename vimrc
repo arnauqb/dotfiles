@@ -11,9 +11,10 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+nmap <F8> :TagbarToggle<CR> 
 call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdtree'
 "Plug 'altercation/vim-colors-solarized'
@@ -27,10 +28,14 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'jdkanani/vim-material-theme'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'w0rp/ale'
+Plug 'roxma/nvim-completion-manager'
+Plug 'majutsushi/tagbar'
 call plug#end()
 "COLORSCHEME
 set background=dark
 colorscheme gruvbox
+let g:airline_theme='base16_default'
 "if filereadable(expand("~/.vimrc_background"))
   "let base16colorspace=256
 ""  set background=dark
@@ -47,8 +52,7 @@ colorscheme gruvbox
 "colorscheme base16-gruvbox-dark-hard
 "set background=dark
 ""hi Normal ctermbg=Black
-highlight LineNr ctermfg=DarkGray ctermbg=black
-let g:airline_theme='base16_default'
+"highlight LineNr ctermfg=DarkGray ctermbg=black
 
 "benjamin things
 set nocompatible
@@ -71,7 +75,7 @@ set splitright
 "read pdfs
 :command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
 "transparency
-"hi Normal guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
 "tab numbering for easier navigation
 let g:tex_flavor = "latex"
 if exists('g:quicktex_tex') && !exists('g:quicktex_math')

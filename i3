@@ -146,12 +146,14 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 #volume
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 4dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 4dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master 0%
+#bindsym XF86AudioRaiseVolume exec amixer -q set Master 4dB+ unmute
+#bindsym XF86AudioLowerVolume exec amixer -q set Master 4dB- unmute
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec amixer -q set Master toggle 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbright +35
-bindsym XF86MonBrightnessDown exec xbright -35
+bindsym XF86MonBrightnessUp exec xbright +20
+bindsym XF86MonBrightnessDown exec xbright -20
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -211,20 +213,34 @@ bindsym $mod+r mode "resize"
 exec_always pkill -9 polybar ; polybar top
 #switch layout
 bindsym ISO_Next_Group exec pkill -RTMIN+1 i3blocks
-exec_always "setxkbmap -layout us,es"
+exec_always "setxkbmap -layout gb,es"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
 
 exec --no-startup-id nm-applet
 #wallpaper
 exec_always feh --bg-scale ~/Pictures/wallpaper.png
 #aplicacions
-bindsym $mod+g exec firefox
+bindsym $mod+g exec firefox-nightly
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+n exec termite -e ranger
 bindsym $mod+shift+n exec nautilus 
+bindsym $mod+shift+Return exec tdrop -a termite
 exec compton -f
 exec redshift-gtk
 #gaps
 gaps inner 5 
 gaps outer 2
-new_window 1pixel
+#removes borders:
+new_window 1pixel 
+
+#natural scrolling and tab
+#exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+#exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1 
+exec xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Scrolling Distance" "-112" "-112"
+#conky
+exec --no-startup-id conky --config=/home/arnau/.config/conky.conf
+#apps to workspaces
+#assign [class="Termite"] 1
+#assign [class="Firefox"] 2
+#assign [class="Nightly"] 2
+#assign [class="Rhythmbox"] 10
