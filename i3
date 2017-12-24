@@ -1,4 +1,3 @@
-
 set_from_resource	  $color15_i3wmthemer	    color15
 set_from_resource	  $color14_i3wmthemer	    color14
 set_from_resource	  $color13_i3wmthemer	    color13
@@ -225,11 +224,14 @@ bindsym $mod+t exec telegram-desktop
 bindsym $mod+n exec termite -e ranger
 bindsym $mod+shift+n exec nautilus 
 bindsym $mod+shift+Return exec tdrop -a termite
+bindsym $mod+m exec tdrop -a nautilus
+#lock
+bindsym $mod+x exec lock -l
 exec compton -f
 exec redshift-gtk
 #gaps
-gaps inner 5 
-gaps outer 2
+gaps inner 10
+#gaps outer 1
 #removes borders:
 new_window 1pixel 
 
@@ -244,3 +246,9 @@ exec --no-startup-id conky --config=/home/arnau/.config/conky.conf
 #assign [class="Firefox"] 2
 #assign [class="Nightly"] 2
 #assign [class="Rhythmbox"] 10
+
+#lock closing lid
+exec --no-startup-id lock -u ~/Pictures/planet.jpg
+exec --no-startup-id xss-lock -- lock -l
+
+# vim:filetype=i3

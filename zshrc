@@ -87,7 +87,6 @@ if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.z
 	    source ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
-# added by Anaconda3 4.3.1 installer
 export PATH="/home/arnau/.bin:$PATH"
 export PATH="/usr/local/texlive/2017/bin/x86_64-linux:$PATH"
 #export PATH="/usr/local/hdf5:$PATH"

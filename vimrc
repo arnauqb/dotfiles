@@ -31,6 +31,8 @@ Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
 Plug 'roxma/nvim-completion-manager'
 Plug 'majutsushi/tagbar'
+Plug 'PotatoesMaster/i3-vim-syntax'
+
 call plug#end()
 "COLORSCHEME
 set background=dark
@@ -68,6 +70,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+"powerline
+let g:airline_powerline_fonts = 1
 nmap j gj
 nmap k gk
 set splitbelow
