@@ -226,18 +226,19 @@ bindsym $mod+shift+n exec nautilus
 bindsym $mod+shift+Return exec tdrop -a termite
 bindsym $mod+m exec tdrop -a nautilus
 #lock
-bindsym $mod+x exec lock -l
-exec compton -f
-exec redshift-gtk
+bindsym $mod+x exec i3lock
+exec --no-startup-id compton -f
+exec --no-startup-id redshift-gtk
+exec --no-startup-id flameshot
 #gaps
-gaps inner 10
+#gaps inner 10
 #gaps outer 1
 #removes borders:
 new_window 1pixel 
 
 #natural scrolling and tab
-#exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
-#exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1 
+exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1 
 exec xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Scrolling Distance" "-112" "-112"
 #conky
 exec --no-startup-id conky --config=/home/arnau/.config/conky.conf
@@ -248,7 +249,7 @@ exec --no-startup-id conky --config=/home/arnau/.config/conky.conf
 #assign [class="Rhythmbox"] 10
 
 #lock closing lid
-exec --no-startup-id lock -u ~/Pictures/planet.jpg
-exec --no-startup-id xss-lock -- lock -l
+#exec --no-startup-id i3lock -u ~/Pictures/planet.jpg
+exec --no-startup-id xss-lock -- i3lock
 
 # vim:filetype=i3

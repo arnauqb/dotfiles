@@ -97,7 +97,6 @@ export EDITOR="nvim"
 alias vi="nvim"
 alias vim="nvim"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 #export PATH="$PATH:/home/arnau/anaconda3/bin"
 #export PYTHONPATH="$PYTHONPATH:/path/to/anaconda3/lib/python3.6/site-packages"
 

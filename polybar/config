@@ -16,12 +16,13 @@ clear = #00
 yellow = #f9a825
 
 [bar/top]
-monitor = eDP-1
+;monitor = eDP-1
+;monitor = HDMI-2
 ;monitor = DP-1
 width = 100%
 height = 25
 radius = 0
-bottom = true
+;bottom = true
 fixed-center = true 
 background = ${colours.bg}
 foreground = ${colours.icons}
@@ -52,7 +53,7 @@ font-4 = Raleway VF Beta:size=11:weight=Regular;1
 
 modules-left   = prevsong playpause nextsong music
 modules-center = i3 
-modules-right  = pavolume redshift battery battery1 wireless-network clock powermenubarlauncher
+modules-right  = cpu pavolume redshift battery battery1 wireless-network clock powermenubarlauncher
 
 ; override-redirect = true
 ; wm-restack = i3
@@ -107,7 +108,33 @@ label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
 label-urgent-padding = 4
 
+[module/cpu]
+type = internal/cpu
 
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label> <ramp-coreload>
+
+; Available tokens:
+;   %percentage% (default) - total cpu load
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = CPU %percentage%%
+
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
 
 [module/clock]
 type = internal/date
