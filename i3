@@ -226,7 +226,7 @@ bindsym $mod+shift+n exec nautilus
 bindsym $mod+shift+Return exec tdrop -a termite
 bindsym $mod+m exec tdrop -a nautilus
 #lock
-bindsym $mod+x exec i3lock
+bindsym $mod+x exec i3lock-fancy
 exec --no-startup-id compton -f
 exec --no-startup-id redshift-gtk
 exec --no-startup-id flameshot
@@ -250,6 +250,7 @@ exec --no-startup-id conky --config=/home/arnau/.config/conky.conf
 
 #lock closing lid
 #exec --no-startup-id i3lock -u ~/Pictures/planet.jpg
-exec --no-startup-id xss-lock -- i3lock
-
+exec --no-startup-id xss-lock -- i3lock-fancy
+#keypass
+exec keypass
 # vim:filetype=i3

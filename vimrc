@@ -71,7 +71,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 "powerline
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 nmap j gj
 nmap k gk
 set splitbelow
