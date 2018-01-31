@@ -53,7 +53,7 @@ font-4 = Raleway VF Beta:size=11:weight=Regular;1
 
 modules-left   = prevsong playpause nextsong music memory cpu
 modules-center = i3 
-modules-right  = pavolume redshift battery battery1 wireless-network clock powermenubarlauncher
+modules-right  = redshift battery battery1 wireless-network clock powermenubarlauncher
 
 ; override-redirect = true
 ; wm-restack = i3
@@ -251,7 +251,7 @@ tail = true
 label = "%output%   "
 exec = ~/.config/polybar/redshift.sh
 click-left = redshift -c ~/.config/redshift.conf &
-click-right = redshift -x && pkill -9 redshift &
+click-right = redshift -x && pkill -9 redshift && pkill -9 redshift-gtk &
 
 
 [module/battery2]

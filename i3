@@ -219,7 +219,7 @@ exec --no-startup-id nm-applet
 #wallpaper
 exec_always feh --bg-scale ~/Pictures/wallpaper.png
 #aplicacions
-bindsym $mod+g exec firefox-nightly
+bindsym $mod+g exec firefox-beta
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+n exec termite -e ranger
 bindsym $mod+shift+n exec nautilus 
