@@ -49,8 +49,8 @@ font xft:Hack 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
-
+#bindsym $mod+Return exec termite
+bindsym $mod+Return exec termite -e tmux
 # kill focused window
 bindsym $mod+q kill
 
@@ -214,7 +214,7 @@ exec_always pkill -9 polybar ; polybar top
 bindsym ISO_Next_Group exec pkill -RTMIN+1 i3blocks
 exec_always "setxkbmap -layout gb,es"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-
+exec_always "xmodmap ~/.Xmodmap"
 exec --no-startup-id nm-applet
 #wallpaper
 exec_always feh --bg-scale ~/Pictures/wallpaper.png
@@ -245,7 +245,8 @@ exec xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Scrolling Distance"
 #conky
 exec --no-startup-id conky --config=/home/arnau/.config/conky.conf
 #apps to workspaces
-#assign [class="Termite"] 1
+assign [class="Termite"] 1
+for_window [class="Termite"] focus
 #assign [class="Firefox"] 2
 #assign [class="Nightly"] 2
 #assign [class="Rhythmbox"] 10
