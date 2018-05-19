@@ -12,6 +12,8 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 nmap <F8> :TagbarToggle<CR> 
+"Powerline
+"let $PYTHONPATH="/usr/lib/python3.6/site-packages" 
 call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
 "Plug 'chriskempson/base16-vim'
@@ -28,8 +30,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'jdkanani/vim-material-theme'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'christoomey/vim-tmux-navigator'
 "Plug 'w0rp/ale'
-Plug 'roxma/nvim-completion-manager'
+"Plug 'roxma/nvim-completion-manager'
 Plug 'majutsushi/tagbar'
 Plug 'PotatoesMaster/i3-vim-syntax'
 
@@ -58,8 +61,8 @@ let g:airline_theme='base16_default'
 
 "benjamin things
 set nocompatible
-set ts=4 "tab 4
 set tabstop=4
+set expandtab
 set shiftwidth=4
 set ignorecase
 set hlsearch
@@ -70,6 +73,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+let g:vimtex_view_general_viewer = 'evince'
 "powerline
 "let g:airline_powerline_fonts = 1
 nmap j gj

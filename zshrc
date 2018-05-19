@@ -94,10 +94,12 @@ export PATH="/usr/local/texlive/2017/bin/x86_64-linux:$PATH"
 #(wal -r -t &)
 eval $(thefuck --alias)
 export EDITOR="nvim"
-alias vi="nvim"
-alias vim="nvim"
+alias vi="vim"
+#alias vim="nvim"
+alias cosma="ssh dc-quer1@login6.cosma.dur.ac.uk -X"
+alias cosma5="ssh -l dc-quer1 login.cosma.dur.ac.uk"
+alias jupycosma="ssh -L 8443:172.17.100.24:8000 -N dc-quer1@cosma-c.cosma.dur.ac.uk"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export PATH="$PATH:/home/arnau/anaconda3/bin"
 #export PYTHONPATH="$PYTHONPATH:/path/to/anaconda3/lib/python3.6/site-packages"
 
-#source "/home/arnau/.oh-my-zsh/custom/themes/spaceship.zsh-theme"

@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc i3blocks.conf vimrc zshrc xinitrc Xmodmap Xresources zshrc"    # list of files/folders to symlink in homedir
+files="bashrc i3blocks.conf vimrc zshrc xinitrc Xmodmap Xresources zshrc compton.conf"    # list of files/folders to symlink in homedir
 files_config="i3 termite"
 ##########
 

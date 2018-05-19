@@ -221,12 +221,14 @@ exec_always feh --bg-scale ~/Pictures/wallpaper.png
 #aplicacions
 bindsym $mod+g exec firefox-beta
 bindsym $mod+t exec telegram-desktop
+bindsym $mod+Shift+t exec slack
 bindsym $mod+n exec termite -e ranger
 bindsym $mod+shift+n exec nautilus 
 bindsym $mod+shift+Return exec tdrop -a termite
 bindsym $mod+m exec tdrop -a nautilus
 #lock
 bindsym $mod+x exec i3lock-fancy
+bindsym Print exec flameshot gui
 exec --no-startup-id compton -f
 exec --no-startup-id redshift-gtk
 exec --no-startup-id flameshot
