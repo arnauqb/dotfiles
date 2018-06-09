@@ -89,6 +89,7 @@ fi
 
 export PATH="/home/arnau/.bin:$PATH"
 export PATH="/usr/local/texlive/2017/bin/x86_64-linux:$PATH"
+export PATH="/usr/local/MATLAB/R2018a/bin:$PATH"
 #export PATH="/usr/local/hdf5:$PATH"
 #make wal change terminal colors
 #(wal -r -t &)
