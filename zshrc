@@ -53,7 +53,7 @@ export ZSH=/usr/share/oh-my-zsh/
 plugins=(git)
 
 ZSH_THEME="robbyrussell"
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -88,8 +88,8 @@ if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.z
 fi
 
 export PATH="/home/arnau/.bin:$PATH"
-export PATH="/usr/local/texlive/2017/bin/x86_64-linux:$PATH"
-export PATH="/usr/local/MATLAB/R2018a/bin:$PATH"
+#export PATH="/usr/local/texlive/2017/bin/x86_64-linux:$PATH"
+#export PATH="/usr/local/MATLAB/R2018a/bin:$PATH"
 #export PATH="/usr/local/hdf5:$PATH"
 #make wal change terminal colors
 #(wal -r -t &)

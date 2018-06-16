@@ -68,9 +68,10 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+y fullscreen disable; floating enable; resize set 600 400; sticky enable; move window to position 1940 54
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
@@ -92,7 +93,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -147,8 +148,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 #volume
 #bindsym XF86AudioRaiseVolume exec amixer -q set Master 4dB+ unmute
 #bindsym XF86AudioLowerVolume exec amixer -q set Master 4dB- unmute
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% & pactl set-sink-volume 1 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% & pactl set-sink-volume 1 -5%
 bindsym XF86AudioMute exec amixer -q set Master toggle 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbright +20
@@ -226,10 +227,11 @@ bindsym $mod+n exec termite -e ranger
 bindsym $mod+shift+n exec nautilus 
 bindsym $mod+shift+Return exec tdrop -a termite
 bindsym $mod+m exec tdrop -a nautilus
+bindsym $mod+c exec emacs
 #lock
 bindsym $mod+x exec i3lock-fancy
 bindsym Print exec flameshot gui
-exec --no-startup-id compton -f
+exec --no-startup-id compton
 exec --no-startup-id redshift-gtk
 exec --no-startup-id flameshot
 #gaps
