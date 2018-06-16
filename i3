@@ -58,7 +58,7 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-bindsym $mod+semicolon focus right
+#bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -67,10 +67,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left 
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -169,11 +169,21 @@ bindsym $mod+Shift+0 move container to workspace 10
 # polybar execute
 exec_always pkill -9 polybar ; polybar top
 
-# remove windows borders
+# remove windows titles
 new_window 1pixel 
 #gaps
-#gaps inner 10
-#gaps outer 1
+gaps inner 10
+gaps outer 1
+
+#windows borders
+default_border pixel 5
+#colors:                border  backgr.  text    indicator
+client.focused          #ffffff #ffffff  #ffffff #ffffff
+client.focused_inactive #ffffff #ffffff  #ffffff #2b2b2b
+client.unfocused        #ffffff #c1c1c1  #ffffff #2b2b2b
+client.urgent           #ffffff #900000  #ffffff #2b2b2b
+
+
 
 ######################################################
 #          Volume / Brightness / Keyboard...         #

@@ -53,7 +53,7 @@ export ZSH=/usr/share/oh-my-zsh/
 plugins=(git)
 
 ZSH_THEME="robbyrussell"
-#source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -103,4 +103,12 @@ alias jupycosma="ssh -L 8443:172.17.100.24:8000 -N dc-quer1@cosma-c.cosma.dur.ac
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export PATH="$PATH:/home/arnau/anaconda3/bin"
 #export PYTHONPATH="$PYTHONPATH:/path/to/anaconda3/lib/python3.6/site-packages"
-
+# start ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval "$(<~/.ssh-agent-thing)"
+fi
+#z move around
+. /home/arnau/dotfiles/z/z.sh
