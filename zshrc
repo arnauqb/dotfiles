@@ -88,7 +88,7 @@ if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.z
 fi
 
 export PATH="/home/arnau/.bin:$PATH"
-#export PATH="/usr/local/texlive/2017/bin/x86_64-linux:$PATH"
+export PATH="/usr/local/texlive/2018/bin/x86_64-linux:$PATH"
 #export PATH="/usr/local/MATLAB/R2018a/bin:$PATH"
 #export PATH="/usr/local/hdf5:$PATH"
 #make wal change terminal colors
@@ -100,15 +100,16 @@ alias vi="vim"
 alias cosma="ssh dc-quer1@login6.cosma.dur.ac.uk -X"
 alias cosma5="ssh -l dc-quer1 login.cosma.dur.ac.uk"
 alias jupycosma="ssh -L 8443:172.17.100.24:8000 -N dc-quer1@cosma-c.cosma.dur.ac.uk"
+alias py="source ~/Python/py/bin/activate"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export PATH="$PATH:/home/arnau/anaconda3/bin"
 #export PYTHONPATH="$PYTHONPATH:/path/to/anaconda3/lib/python3.6/site-packages"
 # start ssh-agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent-thing
-fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval "$(<~/.ssh-agent-thing)"
-fi
+#if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+#    ssh-agent > ~/.ssh-agent-thing
+#fi
+#if [[ "$SSH_AGENT_PID" == "" ]]; then
+#    eval "$(<~/.ssh-agent-thing)"
+#fi
 #z move around
 . /home/arnau/dotfiles/z.sh
