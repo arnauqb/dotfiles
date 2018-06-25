@@ -30,6 +30,8 @@ for file in $files; do
 		        ln -s $dir/$file ~/.$file
 		done
 for file_config in $files_config; do
-  mkdir -p ~/.config/$file_config
+    echo "Moving any existing dotfiles from ~ to $olddir"
+	mv ~/.config/$file_config ~/dotfiles_old/
+	mkdir -p ~/.config/$file_config
   ln -s $dir/$file_config ~/.config/$file_config/config
 done
