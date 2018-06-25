@@ -35,29 +35,12 @@ Plug 'christoomey/vim-tmux-navigator'
 "Plug 'roxma/nvim-completion-manager'
 Plug 'majutsushi/tagbar'
 Plug 'PotatoesMaster/i3-vim-syntax'
-
+Plug 'benmills/vimux'
 call plug#end()
 "COLORSCHEME
 set background=dark
 colorscheme gruvbox
 let g:airline_theme='base16_default'
-"if filereadable(expand("~/.vimrc_background"))
-  "let base16colorspace=256
-""  set background=dark
-"  source ~/.vimrc_background
-"endif
-"let base16colorspace=256  " Access colors present in 256 colorspace
-"set termguicolors
-"if &term =~ '256color'
-"    " Disable Background Color Erase (BCE) so that color schemes
-"    " work properly when Vim is used inside tmux and GNU screen.
-"    set t_ut=
-"endif
-""set t_Co=256
-"colorscheme base16-gruvbox-dark-hard
-"set background=dark
-""hi Normal ctermbg=Black
-"highlight LineNr ctermfg=DarkGray ctermbg=black
 
 "benjamin things
 set nocompatible
@@ -69,10 +52,20 @@ set hlsearch
 set foldmethod=syntax
 set foldlevel=1
 "easir split navigation
+nnoremap <silent> vv <C-w>v
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" Prompt for a command to run map 
+map <Leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+" Inspect runner pane 
+map <Leader>vi :VimuxInspectRunner<CR>
+"
+"" Zoom the tmux runner pane 
+map <Leader>vz :VimuxZoomRunner<CR>
 let g:vimtex_view_general_viewer = 'evince'
 "powerline
 "let g:airline_powerline_fonts = 1
