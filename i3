@@ -218,7 +218,7 @@ exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling En
 exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1 
 exec xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Scrolling Distance" "-112" "-112"
 #conky
-exec --no-startup-id conky --config=/home/arnau/.config/conky.conf
+#exec --no-startup-id conky --config=/home/arnau/.config/conky.conf
 exec --no-startup-id xss-lock -- i3lock-fancy
 
 #lock closing lid

@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh/
+export ZSH=/usr/share/oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -50,9 +50,9 @@ export ZSH=/usr/share/oh-my-zsh/
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git vi-mode web-search)
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="spaceship"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -100,7 +100,7 @@ alias vi="vim"
 alias cosma="ssh dc-quer1@login6.cosma.dur.ac.uk -X"
 alias cosma5="ssh -l dc-quer1 login.cosma.dur.ac.uk"
 alias jupycosma="ssh -L 8443:172.17.100.24:8000 -N dc-quer1@cosma-c.cosma.dur.ac.uk"
-alias py="source ~/Python/py/bin/activate"
+alias py="source activate py"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export PATH="$PATH:/home/arnau/anaconda3/bin"
 #export PYTHONPATH="$PYTHONPATH:/path/to/anaconda3/lib/python3.6/site-packages"
@@ -113,3 +113,6 @@ alias py="source ~/Python/py/bin/activate"
 #fi
 #z move around
 . /home/arnau/dotfiles/z.sh
+export PATH="/home/arnau/miniconda3/bin:$PATH"
+alias doodle="docker run -v $(pwd)/samples:/nd/samples -v $(pwd)/frames:/nd/frames -it alexjc/neural-doodle"
+

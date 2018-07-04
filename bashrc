@@ -176,3 +176,9 @@ source "$BASH_IT"/bash_it.sh
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+
+# added by Miniconda3 installer
+export PATH="/home/arnau/miniconda3/bin:$PATH"
+
+# added by Miniconda3 installer
+export PATH="/home/arnau/miniconda3/bin:$PATH"
