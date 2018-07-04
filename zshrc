@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh/
+export ZSH=/home/arnau/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -88,7 +88,8 @@ if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.z
 fi
 
 export PATH="/home/arnau/.bin:$PATH"
-export PATH="/usr/local/texlive/2018/bin/x86_64-linux:$PATH"
+export PATH="/home/arnau/miniconda3/bin:$PATH"
+#export PATH="/usr/local/texlive/2018/bin/x86_64-linux:$PATH"
 #export PATH="/usr/local/MATLAB/R2018a/bin:$PATH"
 #export PATH="/usr/local/hdf5:$PATH"
 #make wal change terminal colors
@@ -100,7 +101,7 @@ alias vi="vim"
 alias cosma="ssh dc-quer1@login6.cosma.dur.ac.uk -X"
 alias cosma5="ssh -l dc-quer1 login.cosma.dur.ac.uk"
 alias jupycosma="ssh -L 8443:172.17.100.24:8000 -N dc-quer1@cosma-c.cosma.dur.ac.uk"
-alias py="source ~/Python/py/bin/activate"
+alias py="source activate py"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export PATH="$PATH:/home/arnau/anaconda3/bin"
 #export PYTHONPATH="$PYTHONPATH:/path/to/anaconda3/lib/python3.6/site-packages"
