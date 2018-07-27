@@ -52,7 +52,7 @@ export ZSH=/usr/share/oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git vi-mode web-search)
 
-ZSH_THEME="spaceship"
+ZSH_THEME="wezm"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -88,6 +88,7 @@ if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.z
 fi
 
 export PATH="/home/arnau/.bin:$PATH"
+export PATH="/home/arnau/miniconda3/bin:$PATH"
 export PATH="/usr/local/texlive/2018/bin/x86_64-linux:$PATH"
 #export PATH="/usr/local/MATLAB/R2018a/bin:$PATH"
 #export PATH="/usr/local/hdf5:$PATH"

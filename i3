@@ -176,7 +176,7 @@ gaps inner 10
 gaps outer 1
 
 #windows borders
-default_border pixel 5
+default_border pixel 0
 #colors:                border  backgr.  text    indicator
 client.focused          #ffffff #ffffff  #ffffff #ffffff
 client.focused_inactive #ffffff #ffffff  #ffffff #2b2b2b
