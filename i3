@@ -13,7 +13,9 @@ font pango:monospace 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+#bindsym $mod+Return exec termite
+bindsym $mod+Return exec gnome-terminal
+#bindsym $mod+Return exec hyper
 #optional tmux
 #bindsym $mod+Return exec termite -e tmux
 
@@ -21,10 +23,10 @@ bindsym $mod+Return exec termite
 bindsym $mod+q kill
 
 # start rofi
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show drun
 
 #youtube trick music
-bindsym $mod+y fullscreen disable; floating enable; resize set 600 400; sticky enable; move window to position 1940 54
+#bindsym $mod+y fullscreen disable; floating enable; resize set 600 400; sticky enable; move window to position 1940 54
 
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -167,7 +169,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 
 # polybar execute
-exec_always pkill -9 polybar ; polybar top
+#exec_always pkill -9 polybar ; polybar top
+exec_always ~/dotfiles/polybar/launch.sh
 
 # remove windows titles
 new_window 1pixel 
@@ -194,14 +197,14 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% & 
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% & pactl set-sink-volume 1 -5%
 bindsym XF86AudioMute exec amixer -q set Master toggle 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbright +20
-bindsym XF86MonBrightnessDown exec xbright -20
+bindsym XF86MonBrightnessUp exec xbright +10
+bindsym XF86MonBrightnessDown exec xbright -10
 # reload the configuration file
 #switch layout
 bindsym ISO_Next_Group exec pkill -RTMIN+1 i3blocks
 exec_always "setxkbmap -layout gb,es"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-exec "xmodmap ~/.Xmodmap"
+exec_always "xmodmap ~/.Xmodmap"
 
 
 ##########################################################
@@ -229,14 +232,15 @@ exec --no-startup-id xss-lock -- i3lock-fancy
 ##########################################################
 
 #aplicacions
-bindsym $mod+g exec firefox-beta
+#bindsym $mod+g exec firefox
+bindsym $mod+g exec chromium
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
 bindsym $mod+n exec termite -e ranger
 bindsym $mod+shift+n exec nautilus 
-bindsym $mod+shift+Return exec tdrop -a termite
+bindsym $mod+shift+Return exec tdrop -a gnome-terminal 
 bindsym $mod+m exec tdrop -a nautilus
 bindsym $mod+c exec emacs
 #lock
-bindsym $mod+x exec i3lock-fancy
+bindsym $mod+x exec i3lock
 bindsym Print exec flameshot gui

@@ -14,7 +14,7 @@ noremap <Right> <NOP>
 nmap <F8> :TagbarToggle<CR> 
 "Powerline
 "let $PYTHONPATH="/usr/lib/python3.6/site-packages" 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'lervag/vimtex'
 "Plug 'chriskempson/base16-vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -31,16 +31,28 @@ Plug 'jdkanani/vim-material-theme'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'JamshedVesuna/vim-markdown-preview'
 "Plug 'w0rp/ale'
 "Plug 'roxma/nvim-completion-manager'
 Plug 'majutsushi/tagbar'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'benmills/vimux'
+Plug 'ap/vim-css-color'
+Plug 'sickill/vim-monokai'
+Plug 'junegunn/goyo.vim'
+Plug 'RobertYan/monokai-soda'
+Plug 'dracula/vim'
+
+" markdown
+let vim_markdown_preview_github=1
+
+
 call plug#end()
 "COLORSCHEME
-set background=dark
-colorscheme gruvbox
-let g:airline_theme='base16_default'
+set termguicolors
+"set background=dark
+colorscheme dracula
+let g:airline_theme='dracula'
 
 "benjamin things
 set nocompatible

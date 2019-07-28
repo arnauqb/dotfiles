@@ -116,17 +116,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# added by Anaconda3 4.3.1 installer
-export PATH="/home/arnau/anaconda3/bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Path to the bash it configuration
-export BASH_IT="/home/arnau/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
-export BASH_IT_THEME='powerline'
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
@@ -169,8 +164,6 @@ export SCM_CHECK=true
 # after enabling or disabling aliases, plugins, and completions.
 # export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
 
-# Load Bash It
-source "$BASH_IT"/bash_it.sh
 
 #set locales
 export LC_ALL=en_US.UTF-8
@@ -178,7 +171,5 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
 # added by Miniconda3 installer
-export PATH="/home/arnau/miniconda3/bin:$PATH"
-
-# added by Miniconda3 installer
-export PATH="/home/arnau/miniconda3/bin:$PATH"
+#export PATH="/home/arnau/miniconda3/bin:$PATH"
+. /home/arnau/miniconda3/etc/profile.d/conda.sh

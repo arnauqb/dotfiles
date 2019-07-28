@@ -52,7 +52,7 @@ export ZSH=/usr/share/oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git vi-mode web-search)
 
-ZSH_THEME="wezm"
+ZSH_THEME="wedisagree"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -88,7 +88,7 @@ if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.z
 fi
 
 export PATH="/home/arnau/.bin:$PATH"
-export PATH="/home/arnau/miniconda3/bin:$PATH"
+#export PATH="/home/arnau/miniconda3/bin:$PATH"
 export PATH="/usr/local/texlive/2018/bin/x86_64-linux:$PATH"
 #export PATH="/usr/local/MATLAB/R2018a/bin:$PATH"
 #export PATH="/usr/local/hdf5:$PATH"
@@ -96,12 +96,25 @@ export PATH="/usr/local/texlive/2018/bin/x86_64-linux:$PATH"
 #(wal -r -t &)
 eval $(thefuck --alias)
 export EDITOR="nvim"
-alias vi="vim"
+
+### aliases ##
+alias vi="nvim"
 #alias vim="nvim"
-alias cosma="ssh dc-quer1@login6.cosma.dur.ac.uk -X"
+alias l="ls -lh"
+alias cosma6="ssh dc-quer1@login6.cosma.dur.ac.uk -X"
+alias cosma="ssh dc-quer1@login7a.cosma.dur.ac.uk"
 alias cosma5="ssh -l dc-quer1 login.cosma.dur.ac.uk"
-alias jupycosma="ssh -L 8443:172.17.100.24:8000 -N dc-quer1@cosma-c.cosma.dur.ac.uk"
+alias jupycosma="ssh dc-quer1@login7a.cosma.dur.ac.uk -L 8888:127.0.0.1:8888 -N"
 alias py="source activate py"
+alias astro="conda activate astro"
+alias doodle="docker run -v $(pwd)/samples:/nd/samples -v $(pwd)/frames:/nd/frames -it alexjc/neural-doodle"
+alias dualmonitor='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --left-of eDP1'
+alias singlemonitor='xrandr --auto --output HDMI2 --off'
+alias screenonly='xrandr --auto --output eDP1 --off'
+alias cloudy='/home/arnau/cloudy/source/cloudy.exe'
+alias tmux="TERM=screen-256color-bce tmux"
+
+#######################################################
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export PATH="$PATH:/home/arnau/anaconda3/bin"
 #export PYTHONPATH="$PYTHONPATH:/path/to/anaconda3/lib/python3.6/site-packages"
@@ -114,6 +127,9 @@ alias py="source activate py"
 #fi
 #z move around
 . /home/arnau/dotfiles/z.sh
-export PATH="/home/arnau/miniconda3/bin:$PATH"
-alias doodle="docker run -v $(pwd)/samples:/nd/samples -v $(pwd)/frames:/nd/frames -it alexjc/neural-doodle"
-
+#export PATH="/home/arnau/miniconda3/bin:$PATH"
+. /etc/profile.d/conda.sh
+unset BROWSER
+export HEADAS=/home/arnau/heasoft-6.25/x86_64-pc-linux-gnu-libc2.28
+alias heainit=". $HEADAS/headas-init.sh"
+export CLOUDY_DATA_PATH="/home/arnau/cloudy/data" 
