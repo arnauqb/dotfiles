@@ -7,16 +7,15 @@ set number
 set relativenumber
 "HARD MODE 
 ""set mouse=a
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+"noremap <Up> <NOP>
+"noremap <Down> <NOP>
+"noremap <Left> <NOP>
+"noremap <Right> <NOP>
 nmap <F8> :TagbarToggle<CR> 
-"Powerline
-"let $PYTHONPATH="/usr/lib/python3.6/site-packages" 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
-"Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
+Plug 'dracula/vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdtree'
 "Plug 'altercation/vim-colors-solarized'
@@ -25,59 +24,41 @@ Plug 'vim-airline/vim-airline'
 Plug 'brennier/quicktex'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
-Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-surround'
+Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jdkanani/vim-material-theme'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'JamshedVesuna/vim-markdown-preview'
-"Plug 'w0rp/ale'
 "Plug 'roxma/nvim-completion-manager'
 Plug 'majutsushi/tagbar'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'benmills/vimux'
-Plug 'ap/vim-css-color'
-Plug 'sickill/vim-monokai'
+Plug 'tell-k/vim-autopep8'
 Plug 'junegunn/goyo.vim'
-Plug 'RobertYan/monokai-soda'
 Plug 'dracula/vim'
-
-" markdown
-let vim_markdown_preview_github=1
-
+Plug 'sickill/vim-monokai'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
-"COLORSCHEME
-"set termguicolors
+" terminal colors "
+set termguicolors
+colorscheme monokai 
+let g:airline_theme='base16_monokai'
 "set background=dark
-colorscheme dracula
-let g:airline_theme='dracula'
 
 "benjamin things
 set nocompatible
-set tabstop=4
-set expandtab
-set shiftwidth=4
+set autoindent expandtab tabstop=4 shiftwidth=4
 set ignorecase
 set hlsearch
 set foldmethod=syntax
 set foldlevel=1
 "easir split navigation
-nnoremap <silent> vv <C-w>v
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-" Prompt for a command to run map 
-map <Leader>vp :VimuxPromptCommand<CR>
-" Run last command executed by VimuxRunCommand
-map <Leader>vl :VimuxRunLastCommand<CR>
-" Inspect runner pane 
-map <Leader>vi :VimuxInspectRunner<CR>
-"
-"" Zoom the tmux runner pane 
-map <Leader>vz :VimuxZoomRunner<CR>
+nnoremap <Down> <C-W><C-J>
+nnoremap <Up> <C-W><C-K>
+nnoremap <Left> <C-W><C-L>
+nnoremap <Right> <C-W><C-H>
 let g:vimtex_view_general_viewer = 'evince'
 "powerline
 "let g:airline_powerline_fonts = 1
@@ -88,7 +69,6 @@ set splitright
 "read pdfs
 :command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
 "transparency
-hi Normal guibg=NONE ctermbg=NONE
 "tab numbering for easier navigation
 let g:tex_flavor = "latex"
 if exists('g:quicktex_tex') && !exists('g:quicktex_math')

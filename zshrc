@@ -103,8 +103,9 @@ alias dualmonitor='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --lef
 alias singlemonitor='xrandr --auto --output HDMI2 --off'
 alias screenonly='xrandr --auto --output eDP1 --off'
 alias cloudy='/home/arnau/cloudy/source/cloudy.exe'
-alias tmux="TERM=screen-256color-bce tmux"
+#alias tmux="TERM=screen-256color-bce tmux"
 
+export TERM="xterm-256color"
 #######################################################
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 . /home/arnau/dotfiles/z.sh
