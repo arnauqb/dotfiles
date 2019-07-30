@@ -14,8 +14,10 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec termite
-bindsym $mod+Return exec gnome-terminal
+#bindsym $mod+Return exec gnome-terminal
+#bindsym $mod+Return exec xfce4-terminal 
 #bindsym $mod+Return exec hyper
+bindsym $mod+Return exec kitty 
 #optional tmux
 #bindsym $mod+Return exec termite -e tmux
 
@@ -204,7 +206,7 @@ bindsym XF86MonBrightnessDown exec xbright -10
 bindsym ISO_Next_Group exec pkill -RTMIN+1 i3blocks
 exec_always "setxkbmap -layout gb,es"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-exec_always "xmodmap ~/.Xmodmap"
+exec_always "xmodmap /home/arnau/.Xmodmap"
 
 
 ##########################################################
@@ -213,7 +215,7 @@ exec_always "xmodmap ~/.Xmodmap"
 
 exec --no-startup-id nm-applet
 exec_always feh --bg-scale ~/Pictures/wallpaper.png
-exec --no-startup-id compton
+exec --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id redshift-gtk
 exec --no-startup-id flameshot
 #natural scrolling and tab
@@ -233,12 +235,12 @@ exec --no-startup-id xss-lock -- i3lock-fancy
 
 #aplicacions
 #bindsym $mod+g exec firefox
-bindsym $mod+g exec chromium
+bindsym $mod+g exec firefox 
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
 bindsym $mod+n exec termite -e ranger
-bindsym $mod+shift+n exec nautilus 
-bindsym $mod+shift+Return exec tdrop -a gnome-terminal 
+bindsym $mod+shift+n exec thunar 
+#bindsym $mod+shift+Return exec tdrop -a gnome-terminal 
 bindsym $mod+m exec tdrop -a nautilus
 bindsym $mod+c exec emacs
 #lock

@@ -1,8 +1,5 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh
+export ZSH=/home/arnau/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -88,23 +85,17 @@ if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.z
 fi
 
 export PATH="/home/arnau/.bin:$PATH"
-#export PATH="/home/arnau/miniconda3/bin:$PATH"
-export PATH="/usr/local/texlive/2018/bin/x86_64-linux:$PATH"
-#export PATH="/usr/local/MATLAB/R2018a/bin:$PATH"
-#export PATH="/usr/local/hdf5:$PATH"
-#make wal change terminal colors
-#(wal -r -t &)
 eval $(thefuck --alias)
-export EDITOR="nvim"
+export EDITOR="vim"
 
 ### aliases ##
-alias vi="nvim"
+alias vi="vim"
 #alias vim="nvim"
 alias l="ls -lh"
 alias cosma6="ssh dc-quer1@login6.cosma.dur.ac.uk -X"
 alias cosma="ssh dc-quer1@login7a.cosma.dur.ac.uk"
 alias cosma5="ssh -l dc-quer1 login.cosma.dur.ac.uk"
-alias jupycosma="ssh dc-quer1@login7a.cosma.dur.ac.uk -L 8888:127.0.0.1:8888 -N"
+alias jupycosma="ssh dc-quer1@login7a.cosma.dur.ac.uk -L 8892:127.0.0.1:8892 -N"
 alias py="source activate py"
 alias astro="conda activate astro"
 alias doodle="docker run -v $(pwd)/samples:/nd/samples -v $(pwd)/frames:/nd/frames -it alexjc/neural-doodle"
@@ -116,20 +107,25 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 #######################################################
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-#export PATH="$PATH:/home/arnau/anaconda3/bin"
-#export PYTHONPATH="$PYTHONPATH:/path/to/anaconda3/lib/python3.6/site-packages"
-# start ssh-agent
-#if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-#    ssh-agent > ~/.ssh-agent-thing
-#fi
-#if [[ "$SSH_AGENT_PID" == "" ]]; then
-#    eval "$(<~/.ssh-agent-thing)"
-#fi
-#z move around
 . /home/arnau/dotfiles/z.sh
-#export PATH="/home/arnau/miniconda3/bin:$PATH"
-. /etc/profile.d/conda.sh
+# export PATH="/home/arnau/miniconda3/bin:$PATH"  # commented out by conda initialize
 unset BROWSER
 export HEADAS=/home/arnau/heasoft-6.25/x86_64-pc-linux-gnu-libc2.28
 alias heainit=". $HEADAS/headas-init.sh"
 export CLOUDY_DATA_PATH="/home/arnau/cloudy/data" 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/arnau/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/arnau/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/arnau/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/arnau/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

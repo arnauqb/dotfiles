@@ -49,7 +49,7 @@ let vim_markdown_preview_github=1
 
 call plug#end()
 "COLORSCHEME
-set termguicolors
+"set termguicolors
 "set background=dark
 colorscheme dracula
 let g:airline_theme='dracula'
