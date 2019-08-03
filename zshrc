@@ -111,7 +111,7 @@ alias cloudy='/home/arnau/cloudy/source/cloudy.exe'
 . /home/arnau/dotfiles/z.sh
 # export PATH="/home/arnau/miniconda3/bin:$PATH"  # commented out by conda initialize
 unset BROWSER
-export HEADAS=/home/arnau/heasoft-6.25/x86_64-pc-linux-gnu-libc2.28
+export HEADAS=/home/arnau/heasoft-6.26.1/x86_64-pc-linux-gnu-libc2.29
 alias heainit=". $HEADAS/headas-init.sh"
 export CLOUDY_DATA_PATH="/home/arnau/cloudy/data" 
 

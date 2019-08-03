@@ -194,9 +194,14 @@ client.urgent           #ffffff #900000  #ffffff #2b2b2b
 #          Volume / Brightness / Keyboard...         #
 ######################################################
 
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 #volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% & pactl set-sink-volume 1 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% & pactl set-sink-volume 1 -5%
+bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%-
+bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+
 bindsym XF86AudioMute exec amixer -q set Master toggle 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbright +10
