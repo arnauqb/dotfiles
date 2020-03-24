@@ -185,4 +185,9 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+export HEADAS=/home/arnau/heasoft-6.26.1/x86_64-pc-linux-gnu-libc2.29
+alias heainit=". $HEADAS/headas-init.sh"
 
+
+# added by travis gem
+[ -f /home/arnau/.travis/travis.sh ] && source /home/arnau/.travis/travis.sh

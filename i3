@@ -23,6 +23,7 @@ bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+q kill
+bindsym --release $mod+Shift+q exec xkill 
 
 # start rofi
 bindsym $mod+d exec --no-startup-id rofi -show drun
@@ -177,7 +178,7 @@ exec_always ~/dotfiles/polybar/launch.sh
 # remove windows titles
 new_window 1pixel 
 #gaps
-gaps inner 10
+gaps inner 5
 gaps outer 1
 
 #windows borders
@@ -218,6 +219,7 @@ exec_always "xmodmap /home/arnau/.Xmodmap"
 #                    Startup executions                  #
 ##########################################################
 
+exec --no-startup xset b off
 exec --no-startup-id nm-applet
 exec_always feh --bg-scale ~/Pictures/wallpaper.png
 exec --no-startup-id compton --config ~/.compton.conf
@@ -240,7 +242,7 @@ exec --no-startup-id xss-lock -- i3lock-fancy
 
 #aplicacions
 #bindsym $mod+g exec firefox
-bindsym $mod+g exec firefox 
+bindsym $mod+g exec brave
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
 bindsym $mod+n exec termite -e ranger
@@ -251,3 +253,4 @@ bindsym $mod+c exec emacs
 #lock
 bindsym $mod+x exec i3lock
 bindsym Print exec flameshot gui
+exec_always "xmodmap /home/arnau/.Xmodmap"

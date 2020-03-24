@@ -84,22 +84,29 @@ if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.z
 	    source ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
+## sweet silence ##
+unsetopt BEEP
 export PATH="/home/arnau/.bin:$PATH"
-eval $(thefuck --alias)
+#python winds
+export PATH=/home/arnau/Downloads/python/bin:$PATH
+export PYTHON=/home/arnau/Downloads/python
 export EDITOR="vim"
+export BROWSER="brave"
 
 ### aliases ##
-alias vi="vim"
-#alias vim="nvim"
+alias vi="nvim"
+alias vim="nvim"
 alias l="ls -lh"
 alias cosma6="ssh dc-quer1@login6.cosma.dur.ac.uk -X"
 alias cosma="ssh dc-quer1@login7a.cosma.dur.ac.uk"
 alias cosma5="ssh -l dc-quer1 login.cosma.dur.ac.uk"
-alias jupycosma="ssh dc-quer1@login7a.cosma.dur.ac.uk -L 8892:127.0.0.1:8892 -N"
-alias py="source activate py"
-alias astro="conda activate astro"
+alias jupycosma="ssh -v dc-quer1@login7a.cosma.dur.ac.uk -L 8892:127.0.0.1:8892 -N"
+#alias astro="conda activate astro"
+alias astro="source ~/Documents/qwind/env/bin/activate"
 alias doodle="docker run -v $(pwd)/samples:/nd/samples -v $(pwd)/frames:/nd/frames -it alexjc/neural-doodle"
 alias dualmonitor='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --left-of eDP1'
+alias dualmonitor2='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --right-of eDP1'
+alias dualup='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --above eDP1'
 alias singlemonitor='xrandr --auto --output HDMI2 --off'
 alias screenonly='xrandr --auto --output eDP1 --off'
 alias cloudy='/home/arnau/cloudy/source/cloudy.exe'
@@ -109,14 +116,17 @@ alias cloudy='/home/arnau/cloudy/source/cloudy.exe'
 #######################################################
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 . /home/arnau/dotfiles/z.sh
+
+##### paths ######
 # export PATH="/home/arnau/miniconda3/bin:$PATH"  # commented out by conda initialize
 unset BROWSER
 export HEADAS=/home/arnau/heasoft-6.26.1/x86_64-pc-linux-gnu-libc2.29
 alias heainit=". $HEADAS/headas-init.sh"
+# sundials
 export CLOUDY_DATA_PATH="/home/arnau/cloudy/data" 
+export PATH="/home/arnau/.gem/ruby/2.7.0/bin:$PATH"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
+# conda
 __conda_setup="$('/home/arnau/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -128,5 +138,16 @@ else
     fi
 fi
 unset __conda_setup
+
+KEYTIMEOUT=1
+
+#################
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
 # <<< conda initialize <<<
 
+# ruby path
+
+# added by travis gem
+[ -f /home/arnau/.travis/travis.sh ] && source /home/arnau/.travis/travis.sh

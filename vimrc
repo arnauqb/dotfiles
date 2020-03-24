@@ -39,6 +39,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'dracula/vim'
 Plug 'sickill/vim-monokai'
 Plug 'morhetz/gruvbox'
+" Use release branch (Recommend)
 
 call plug#end()
 " terminal colors "
