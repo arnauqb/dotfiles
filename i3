@@ -13,10 +13,6 @@ font pango:monospace 10
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec termite
-#bindsym $mod+Return exec gnome-terminal
-#bindsym $mod+Return exec xfce4-terminal 
-#bindsym $mod+Return exec hyper
 bindsym $mod+Return exec kitty 
 #optional tmux
 #bindsym $mod+Return exec termite -e tmux
@@ -177,9 +173,12 @@ exec_always ~/dotfiles/polybar/launch.sh
 
 # remove windows titles
 new_window 1pixel 
-#gaps
+#gaps and round
 gaps inner 5
 gaps outer 1
+
+# corner radius
+border_radius 10
 
 #windows borders
 default_border pixel 0
@@ -212,7 +211,7 @@ bindsym XF86MonBrightnessDown exec xbright -10
 bindsym ISO_Next_Group exec pkill -RTMIN+1 i3blocks
 exec_always "setxkbmap -layout gb,es"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-exec_always "xmodmap /home/arnau/.Xmodmap"
+exec_always "/usr/bin/xmodmap /home/arnau/dotfiles/Xmodmap"
 
 
 ##########################################################
@@ -222,7 +221,7 @@ exec_always "xmodmap /home/arnau/.Xmodmap"
 exec --no-startup xset b off
 exec --no-startup-id nm-applet
 exec_always feh --bg-scale ~/Pictures/wallpaper.png
-exec --no-startup-id compton --config ~/.compton.conf
+exec --no-startup-id compton --config /home/arnau/dotfiles/compton.conf
 exec --no-startup-id redshift-gtk
 exec --no-startup-id flameshot
 #natural scrolling and tab
@@ -254,3 +253,14 @@ bindsym $mod+c exec emacs
 bindsym $mod+x exec i3lock
 bindsym Print exec flameshot gui
 exec_always "xmodmap /home/arnau/.Xmodmap"
+
+### Plasma settings
+# Don’t treat Plasma pop-ups as full-sized windows
+for_window [class="plasmashell"] floating enable
+
+# Don’t spawn an empty window for the Plasma Desktop
+for_window [title="Desktop — Plasma"] kill, floating enable, border none
+
+# Don’t let notifications and non-interactive pop-up windows steal focus
+no_focus [class="plasmashell" window_type="notification"]
+no_focus [class="plasmashell" window_type="on_screen_display"]

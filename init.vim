@@ -1,75 +1,154 @@
+let g:plugged_home = '~/.vim/plugged'
+
+" Plugins List
+call plug#begin(g:plugged_home)
+
+  " UI related
+  Plug 'chriskempson/base16-vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'scrooloose/nerdtree'
+
+  "tmux
+  Plug 'christoomey/vim-tmux-navigator'
+
+  " Better Visual Guide
+  Plug 'Yggdroot/indentLine'
+
+  " syntax check
+  Plug 'w0rp/ale'
+
+  " Autocomplete
+  Plug 'neoclide/coc.nvim', {'branch' : 'release'}
+
+  " Formatter
+  Plug 'Chiel92/vim-autoformat'
+
+  " Themes
+  Plug 'drewtempelmeyer/palenight.vim'
+  Plug 'dylanaraps/wal.vim'
+  Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+  
+  " Vim Cheatsheet
+  Plug 'liuchengxu/vim-which-key'
+
+  " Vim multi-cursor
+  Plug 'terryma/vim-multiple-cursors'
+
+  " UltiSnips vim snippets
+  Plug 'SirVer/ultisnips'
+
+  " Devicon glyphs for Nerdtree
+  Plug 'ryanoasis/vim-devicons'
+
+  " YAML support
+  Plug 'stephpy/vim-yaml'
+
+  call plug#end()
+
+set encoding=UTF-8
+
+filetype plugin indent on
+
+" Configurations Part"
+
+" UI configuration
+syntax on
+syntax enable
+
+" colorscheme
+set background=dark
+colorscheme wal
+
+" Italics for palenight
+"let g:palenight_terminal_italics = 1
+
+" True Color Support if it's avaiable in terminal
+"if has("termguicolors")
+"    set termguicolors
+"endif
+"if has("gui_running")
+"  set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:blocks
+"endif
+
+"set termguicolors
 set number
 set relativenumber
-""" Plugins
-call plug#begin('~/.config/nvim')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdtree'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'phanviet/vim-monokai-pro'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'patstockwell/vim-monokai-tasty'
-Plug 'tpope/vim-obsession'
-"Plug 'JuliaEditorSupport/julia-vim'
-call plug#end()
-"easir split navigation
-nnoremap <Down> <C-W><C-J>
-nnoremap <Up> <C-W><C-K>
-nnoremap <Left> <C-W><C-L>
-nnoremap <Right> <C-W><C-H>
-nmap j gj
-nmap k gk
-
-"yaml 2 space ident
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-filetype plugin indent on
-" show existing tab with 4 spaces width
-set tabstop=4
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
-" On pressing tab, insert 4 spaces
-set expandtab
-
-"make vim and system clipboard the same
-set clipboard^=unnamed
-
-"nerd tree
-"open nedtree if no files
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-n> :NERDTreeToggle<CR>
-
-"colors
-set termguicolors
-let g:vim_monokai_tasty_italic = 1
-colorscheme monokai_pro
-let g:airline_theme='monokai_tasty'
-
-
-noremap Zz <c-w>_ \| <c-w>\|
-noremap Zo <c-w>=
-
-
-" cog configuration
-" if hidden is not set, TextEdit might fail.
 set hidden
+set mouse=a
+set noshowmode
+set noshowmatch
+set nolazyredraw
 
-" Some servers have issues with backup files, see #649
+" Turn off backup
 set nobackup
+set noswapfile
 set nowritebackup
 
-" Better display for messages
-set cmdheight=2
+" Search configuration
+set ignorecase                    " ignore case when searching
+set smartcase                     " turn on smartcase
 
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
+" Tab and Indent configuration
+set expandtab
+set tabstop=4
+set shiftwidth=4
 
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
+" vim-autoformat
+noremap <F3> :Autoformat<CR>
 
-" always show signcolumns
-set signcolumn=yes
+" NERDTree configs
+map <C-,> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Ale
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_linters = {'python': ['flake8']}
+
+" Airline
+let g:airline_left_sep  = ''
+let g:airline_right_sep = ''
+let g:airline#extensions#ale#enabled = 1
+let airline#extensions#ale#error_symbol = 'E:'
+let airline#extensions#ale#warning_symbol = 'W:'
+let g:airline_theme = 'wal' 
+
+" .rasi syntax
+au BufNewFile,BufRead /*.rasi setf css
+
+" UltiSnips config
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+
+" Control vim window splits with Alt + Arrow
+"nmap <silent> <A-Up> :wincmd k<CR>
+"nmap <silent> <A-Down> :wincmd j<CR>
+"nmap <silent> <A-Left> :wincmd h<CR>
+"nmap <silent> <A-Right> :wincmd l<CR>
+
+" Clipboard management
+"
+let mapleader="`"
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+" coc settings
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.

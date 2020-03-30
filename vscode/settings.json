@@ -28,7 +28,7 @@
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "editor.fontWeight": "500",
-    "editor.fontSize": 13,
+    "editor.fontSize": 14,
     "editor.lineNumbers": "relative",
     "terminal.integrated.shell.linux": "/bin/zsh",
     "[python]": {
@@ -59,4 +59,7 @@
     "editor.selectionClipboard": false,
     "julia.enableTelemetry": true,
     "julia.enableCrashReporter": true,
+    "julia.executablePath": "/home/arnau/julia/bin/julia",
+    "terminal.integrated.fontFamily": "monospace",
+    "vim.useSystemClipboard": true
 }
