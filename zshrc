@@ -105,7 +105,7 @@ source $ZSH/oh-my-zsh.sh
 unsetopt BEEP
 # export variables
 export EDITOR="vim"
-export BROWSER="brave"
+export BROWSER="firefox"
 export PATH="$PATH:/home/arnau/julia/bin"
 
 
