@@ -4,10 +4,11 @@ margin-bottom = 0
 
 
 [colours]
-bg =    #aa292f37
+;bg =    #aa292f37
 ;bg = #DA222222
 ;bg = #000f0f0f
 ;bg = #0000000f
+bg = #1d2229
 ;icons =  #259E83
 icons = #e8e8e8
 white = #e8e8e8

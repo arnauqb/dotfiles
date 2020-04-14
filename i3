@@ -13,7 +13,9 @@ font pango:monospace 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty 
+# bindsym $mod+Return exec kitty 
+#bindsym $mod+Return exec konsole --hide-menubar
+bindsym $mod+Return exec kitty
 #optional tmux
 #bindsym $mod+Return exec termite -e tmux
 
@@ -208,10 +210,10 @@ bindsym XF86MonBrightnessUp exec xbright +10
 bindsym XF86MonBrightnessDown exec xbright -10
 # reload the configuration file
 #switch layout
-bindsym ISO_Next_Group exec pkill -RTMIN+1 i3blocks
-exec_always "setxkbmap -layout gb,es"
-exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-exec_always "/usr/bin/xmodmap /home/arnau/dotfiles/Xmodmap"
+#bindsym ISO_Next_Group exec pkill -RTMIN+1 i3blocks
+exec "setxkbmap -layout us,es"
+exec "setxkbmap -option 'grp:alt_shift_toggle'"
+exec "/usr/bin/xmodmap /home/arnau/dotfiles/Xmodmap"
 
 
 ##########################################################
@@ -221,7 +223,7 @@ exec_always "/usr/bin/xmodmap /home/arnau/dotfiles/Xmodmap"
 exec --no-startup xset b off
 exec --no-startup-id nm-applet
 exec_always feh --bg-scale ~/Pictures/wallpaper.png
-exec --no-startup-id compton --config /home/arnau/dotfiles/compton.conf
+# exec --no-startup-id compton --config /home/arnau/dotfiles/compton.conf
 exec --no-startup-id redshift-gtk
 exec --no-startup-id flameshot
 #natural scrolling and tab
@@ -241,7 +243,7 @@ exec --no-startup-id xss-lock -- i3lock-fancy
 
 #aplicacions
 #bindsym $mod+g exec firefox
-bindsym $mod+g exec brave
+bindsym $mod+g exec firefox 
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
 bindsym $mod+n exec termite -e ranger
