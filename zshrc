@@ -1,13 +1,19 @@
 autoload -U promptinit; promptinit
 prompt pure
 # MY CONFIGS
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
 ## sweet silence ##
 unsetopt BEEP
 # export variables
 export EDITOR="vim"
 export BROWSER="firefox"
 export PATH="$PATH:/home/arnau/julia/bin"
+export PATH="$PATH:/home/arnau/.gem/ruby/2.7.0/bin"
 export CLOUDY_DATA_PATH="/home/arnau/cloudy17/data"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 
 # z 
@@ -34,3 +40,21 @@ alias singlemonitor='xrandr --auto --output HDMI2 --off'
 alias screenonly='xrandr --auto --output eDP1 --off'
 alias mountcosma='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma7/data/dp004/dc-quer1 ~/mnt/cosma'
 prompt_context(){}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/arnau/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/arnau/miniconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/arnau/miniconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/arnau/miniconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+# <<< conda initialize <<<
+
