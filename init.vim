@@ -79,6 +79,10 @@ call plug#begin(g:plugged_home)
   "Tags
   Plug 'majutsushi/tagbar'
 
+  " smooth scroll
+  Plug 'yuttie/comfortable-motion.vim'
+
+
   call plug#end()
 
 set encoding=UTF-8
