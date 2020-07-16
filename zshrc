@@ -9,12 +9,11 @@ setopt appendhistory
 unsetopt BEEP
 # export variables
 export EDITOR="vim"
-export BROWSER="firefox"
+export BROWSER="chromium"
 export PATH="$PATH:/home/arnau/julia/bin"
 export PATH="$PATH:/home/arnau/.gem/ruby/2.7.0/bin"
 export CLOUDY_DATA_PATH="/home/arnau/cloudy17/data"
 export XDG_CONFIG_HOME="$HOME/.config"
-
 
 # z 
 . /home/arnau/dotfiles/z.sh
@@ -39,6 +38,7 @@ alias dualright='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --right
 alias singlemonitor='xrandr --auto --output HDMI2 --off'
 alias screenonly='xrandr --auto --output eDP1 --off'
 alias mountcosma='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma7/data/dp004/dc-quer1 ~/mnt/cosma'
+alias mountcosma6='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma6/data/dp004/dc-quer1 ~/mnt/cosma6'
 prompt_context(){}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

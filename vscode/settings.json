@@ -1,7 +1,7 @@
 {
     "editor.fontFamily": "JetBrainsMonoMedium Nerd Font",
     "editor.fontLigatures": true,
-    "editor.fontSize": 15,
+    "editor.fontSize": 14,
     "editor.lineNumbers": "relative",
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
     "[python]": {
@@ -31,8 +31,15 @@
     "julia.enableCrashReporter": true,
     "julia.executablePath": "/home/arnau/julia/bin/julia",
     "terminal.integrated.fontFamily": "JetBrainsMonoMedium Nerd Font",
-    "vim.useSystemClipboard": true,
     "pythonTestExplorer.testFramework": "pytest",
-    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "vim.useSystemClipboard": true,
+    "vim.easymotion" : true,
+    "vim.leader": "<space>",
+    "workbench.colorTheme": "Monokai Pro",
+    "julia.lint.run": false,
+    "[julia]": {
+        "editor.defaultFormatter": "singularitti.vscode-julia-formatter"
+    },
+    "explorer.confirmDragAndDrop": false,
 }

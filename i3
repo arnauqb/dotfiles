@@ -180,7 +180,7 @@ gaps inner 5
 gaps outer 1
 
 # corner radius
-border_radius 10
+# border_radius 10
 
 #windows borders
 default_border pixel 0
@@ -242,15 +242,13 @@ exec --no-startup-id xss-lock -- i3lock-fancy
 ##########################################################
 
 #aplicacions
-#bindsym $mod+g exec firefox
-bindsym $mod+g exec firefox 
+bindsym $mod+g exec chromium 
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
 bindsym $mod+n exec termite -e ranger
 bindsym $mod+shift+n exec thunar 
 #bindsym $mod+shift+Return exec tdrop -a gnome-terminal 
 bindsym $mod+m exec tdrop -a nautilus
-bindsym $mod+c exec emacs
 #lock
 bindsym $mod+x exec i3lock
 bindsym Print exec flameshot gui

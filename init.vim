@@ -5,12 +5,11 @@ call plug#begin(g:plugged_home)
 
   " UI related
   Plug 'chriskempson/base16-vim'
-"  Plug 'vim-airline/vim-airline'
-"  Plug 'vim-airline/vim-airline-themes'
   Plug 'scrooloose/nerdtree'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'itchyny/lightline.vim'
   Plug 'christoomey/vim-tmux-navigator'                                   " Navigate between tmux and vim with <C>+jkhl
+  Plug 'machakann/vim-highlightedyank'
 
   " colorschemes
   Plug 'phanviet/vim-monokai-pro'
@@ -21,17 +20,22 @@ call plug#begin(g:plugged_home)
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'benmills/vimux'
 
+  "language support
+  Plug 'neovim/nvim-lsp'
+
+  " repl
+  Plug 'Vigemus/iron.nvim'
+
   " Better Visual Guide
   Plug 'Yggdroot/indentLine'
 
   " Better syntax
-  "Plug 'sheerun/vim-polyglot'
   Plug 'numirias/semshi'
 
   " syntax check
   Plug 'w0rp/ale'
 
-  " Autocomplete
+  " Autocomplete disable coc in julia files
   Plug 'neoclide/coc.nvim', {'tag' : '*', 'do' : './install.sh'}
 
   " Formatter
@@ -48,9 +52,6 @@ call plug#begin(g:plugged_home)
   " Vim multi-cursor
   Plug 'terryma/vim-multiple-cursors'
 
-  " UltiSnips vim snippets
-  "Plug 'SirVer/ultisnips'
-
   " Devicon glyphs for Nerdtree
   Plug 'ryanoasis/vim-devicons'
 
@@ -60,9 +61,9 @@ call plug#begin(g:plugged_home)
   " Black code formatter
   Plug 'psf/black', {'tag' : '19.10b0'}
 
-
   " Julia support
   Plug 'JuliaEditorSupport/julia-vim'
+  Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
   "Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
 
   " Surround
@@ -82,6 +83,16 @@ call plug#begin(g:plugged_home)
   " smooth scroll
   Plug 'yuttie/comfortable-motion.vim'
 
+  " easy motions
+  Plug 'easymotion/vim-easymotion'
+
+  " gives us lists of key bindings
+  Plug 'liuchengxu/vim-which-key'
+
+  " to send commands to tmux panes
+  Plug 'jpalardy/vim-slime'
+  let g:slime_target = "tmux"
+
 
   call plug#end()
 
@@ -90,10 +101,37 @@ set encoding=UTF-8
 filetype plugin indent on
 
 " Configurations Part"
+"
+" Use system python in virtual env
+" Figure out the system Python for Neovim.
+if exists("$VIRTUAL_ENV")
+    let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
+else
+    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+endif
 
 " UI configuration
 syntax on
 syntax enable
+
+"-------------------------slime--------------------------------------------
+let g:slime_target = 'tmux'
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+let g:slime_dont_ask_default = 1
+
+" ----------------------- vim-which-key -----------------------------------
+set timeoutlen=500
+
+let g:mapleader = "\<Space>"
+let g:maplocalleader = "\<Space>"
+let g:which_key_map = {}
+call which_key#register('<Space>', "g:which_key_map")
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey '<Space>'<CR>
+
+" which key can't figure out the easy-motion mappings
+let g:which_key_map = {" ": 'easy motion (re-input to use)'}
+" -------------------------------------------------------------------------
 
 " True Color Support if it's avaiable in terminal
 if has("termguicolors")
@@ -119,37 +157,73 @@ highlight clear SignColumn
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
-"Julia settings
-"
-let g:default_julia_version = '1.4'
+"-----------------------------Julia settings---------------------------------
 " fix Julia highlighting
 autocmd BufRead,BufNewFile *.jl set filetype=julia
 " LaTeX to unicode as you type in julia
 let g:latex_to_unicode_auto = 1
-let g:latex_to_unicode_tab = 0
-noremap <Leader>f :call julia#toggle_function_blockassign()<CR>
+let g:latex_to_unicode_tab = 1
+" tagbar for Julia
+let g:tagbar_type_julia = {
+    \ 'ctagstype' : 'julia',
+    \ 'kinds'     : [
+        \ 't:struct', 'f:function', 'm:macro', 'c:const']
+    \ }
 
-" language server
-" let g:LanguageClient_autoStart = 1
-" let g:LanguageClient_serverCommands = {
-" \   'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
-" \       using LanguageServer;
-" \       using Pkg;
-" \       import StaticLint;
-" \       import SymbolServer;
-" \       env_path = dirname(Pkg.Types.Context().env.project_file);
-" \       debug = false; 
-" \       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, "", Dict());       
-" \       server.runlinter = true;
-" \       run(server);
-" \   ']
-" \ }
-" 
-" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-" Italics for palenight
-"let g:palenight_terminal_italics = 1
+" ctags config location
+let g:tagbar_ctags_options = ['NONE', $HOME.'/.config/ctags']
+"
+"" ----------------------- Julia Language Server ---------------------------
+""  NOTE: you may need to manually do LspInstall julials
+"" -------------------------------------------------------------------------
+lua << EOF
+    require'nvim_lsp'.julials.setup{}
+EOF
+"
+autocmd Filetype julia setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"
+"" show diagnostics when hovering for too long
+autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
+"
+nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <leader>lh    <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <silent> <leader>lk    <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <leader>lr    <cmd>lua vim.lsp.buf.references()<CR>
+
+" disable obnoxious underlining of everything in the damn universe
+"let g:diagnostic_enable_underline = 0
+" -------------------------------------------------------------------------
+"  (end Julia Language Server)
+" -------------------------------------------------------------------------
+
+"------------------------------------------------------------------------------
+" julia-cell configuration
+"------------------------------------------------------------------------------
+" Use '##' tags to define cells
+let g:julia_cell_delimit_cells_by = 'tags'
+
+" map <Leader>jr to run entire file
+nnoremap <Leader>jr :JuliaCellRun<CR>
+
+" map <Leader>jc to execute the current cell
+nnoremap <Leader>jc :JuliaCellExecuteCell<CR>
+
+" map <Leader>jC to execute the current cell and jump to the next cell
+nnoremap <Leader>jC :JuliaCellExecuteCellJump<CR>
+
+" map <Leader>jl to clear Julia screen
+nnoremap <Leader>jl :JuliaCellClear<CR>
+
+" map <Leader>jp and <Leader>jn to jump to the previous and next cell header
+nnoremap <Leader>jp :JuliaCellPrevCell<CR>
+nnoremap <Leader>jn :JuliaCellNextCell<CR>
+
+" map <Leader>je to execute the current line or current selection
+nmap <Leader>je <Plug>SlimeLineSend
+xmap <Leader>je <Plug>SlimeRegionSend
+"
+"===============================================================================
 
 " test mappings
 nmap <silent> <leader>tn :TestNearest<CR>
@@ -158,13 +232,6 @@ nmap <silent> <leader>ts :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 let test#strategy = "vimux"
-
-"folding
-"set foldmethod=indent   
-"set foldnestmax=10
-""set nofoldenable
-"set foldlevel=2
-
 
 "set termguicolors
 set number
@@ -188,6 +255,8 @@ set smartcase                     " turn on smartcase
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set autoindent
+
 
 " vim-autoformat
 noremap <F3> :Autoformat<CR>
@@ -208,15 +277,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {'python': ['flake8']}
 
 " Black
-noremap <C-b> :Black <CR>
-
-" Airline
-"let g:airline_left_sep  = ''
-"let g:airline_right_sep = ''
-"let g:airline#extensions#ale#enabled = 1
-"let airline#extensions#ale#error_symbol = 'E:'
-"let airline#extensions#ale#warning_symbol = 'W:'
-"let g:airline_theme = 'wal' 
+nnoremap <C-/> :Black <CR>
 
 " Lightline
 let g:lightline = {
@@ -304,8 +365,14 @@ nnoremap <leader>P :set paste<CR> "+P :set nopaste<CR>
 vnoremap <leader>p :set paste<CR> "+p :set nopaste<CR>
 vnoremap <leader>P :set paste<CR> "+P :set nopaste<CR>
 
-" coc settings
+"----------------------------------------------------------------------------
+"------------------------------coc settings----------------------------------
+"----------------------------------------------------------------------------
 " TextEdit might fail if hidden is not set.
+
+"disable in julia
+autocmd BufNew,BufEnter *.jl execute "silent! CocDisable"
+autocmd BufLeave *.jl execute "silent! CocEnable"
 
 " Give more space for displaying messages.
 set cmdheight=2

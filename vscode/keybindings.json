@@ -1,14 +1,6 @@
 // Place your key bindings in this file to override the defaults
 [
     {
-        "key": "ctrl+h",
-        "command": "workbench.action.navigateLeft"
-    },
-    {
-        "key": "ctrl+l",
-        "command": "workbench.action.navigateRight"
-    },
-    {
         "key": "ctrl+k",
         "command": "workbench.action.navigateUp"
     },
@@ -16,10 +8,16 @@
         "key": "ctrl+j",
         "command": "workbench.action.navigateDown"
     },
-    {   "key": "ctrl+t",
-        "command": "workbench.action.focusActiveEditorGroup", "when": "terminalFocus" },
-    {   "key": "ctrl+t",       
-        "command": "workbench.action.terminal.focus", "when": "!terminalFocus" 
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft",
     },
-
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight",
+    },
+    {
+        "key": "ctrl+shift+m",
+        "command": "workbench.action.toggleMaximizedPanel"
+    },
 ]
