@@ -73,7 +73,7 @@ call plug#begin(g:plugged_home)
   Plug 'vim-test/vim-test'
 
   " waka waka time
-  Plug 'wakatime/vim-wakatime'
+  " Plug 'wakatime/vim-wakatime'
   " folding
   "Plug 'tmhedberg/SimpylFold'
   "
@@ -81,7 +81,7 @@ call plug#begin(g:plugged_home)
   Plug 'majutsushi/tagbar'
 
   " smooth scroll
-  Plug 'yuttie/comfortable-motion.vim'
+  " Plug 'yuttie/comfortable-motion.vim'
 
   " easy motions
   Plug 'easymotion/vim-easymotion'

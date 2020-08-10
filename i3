@@ -222,7 +222,7 @@ exec "/usr/bin/xmodmap /home/arnau/dotfiles/Xmodmap"
 
 exec --no-startup xset b off
 exec --no-startup-id nm-applet
-exec_always feh --bg-scale ~/Pictures/wallpaper.png
+exec_always feh --bg-fill ~/Pictures/wallpaper.png
 # exec --no-startup-id compton --config /home/arnau/dotfiles/compton.conf
 exec --no-startup-id redshift-gtk
 exec --no-startup-id flameshot
@@ -247,6 +247,7 @@ bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
 bindsym $mod+n exec termite -e ranger
 bindsym $mod+shift+n exec thunar 
+bindsym $mod+shift+b exec --no-startup-id rofi-bluetooth
 #bindsym $mod+shift+Return exec tdrop -a gnome-terminal 
 bindsym $mod+m exec tdrop -a nautilus
 #lock
