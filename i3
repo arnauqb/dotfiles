@@ -220,6 +220,7 @@ exec "/usr/bin/xmodmap /home/arnau/dotfiles/Xmodmap"
 #                    Startup executions                  #
 ##########################################################
 
+exec --no-startup-id twmnd
 exec --no-startup xset b off
 exec --no-startup-id nm-applet
 exec_always feh --bg-fill ~/Pictures/wallpaper.png
@@ -245,11 +246,11 @@ exec --no-startup-id xss-lock -- i3lock-fancy
 bindsym $mod+g exec chromium 
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
-bindsym $mod+n exec termite -e ranger
+bindsym $mod+n exec lotion
 bindsym $mod+shift+n exec thunar 
 bindsym $mod+shift+b exec --no-startup-id rofi-bluetooth
+bindsym $mod+m exec birdtray --toggle-tb
 #bindsym $mod+shift+Return exec tdrop -a gnome-terminal 
-bindsym $mod+m exec tdrop -a nautilus
 #lock
 bindsym $mod+x exec i3lock
 bindsym Print exec flameshot gui

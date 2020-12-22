@@ -73,7 +73,7 @@ call plug#begin(g:plugged_home)
   Plug 'vim-test/vim-test'
 
   " waka waka time
-  " Plug 'wakatime/vim-wakatime'
+  Plug 'wakatime/vim-wakatime'
   " folding
   "Plug 'tmhedberg/SimpylFold'
   "
@@ -92,6 +92,9 @@ call plug#begin(g:plugged_home)
   " to send commands to tmux panes
   Plug 'jpalardy/vim-slime'
   let g:slime_target = "tmux"
+
+  " floating terminal
+  Plug 'voldikss/vim-floaterm'
 
 
   call plug#end()
@@ -277,7 +280,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {'python': ['flake8']}
 
 " Black
-nnoremap <C-/> :Black <CR>
+nmap <leader>b :Black<CR>
 
 " Lightline
 let g:lightline = {
