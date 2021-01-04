@@ -244,6 +244,7 @@ exec --no-startup-id xss-lock -- i3lock-fancy
 
 #aplicacions
 bindsym $mod+g exec chromium 
+#bindsym $mod+g exec vivaldi-stable 
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
 bindsym $mod+n exec lotion

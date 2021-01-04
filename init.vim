@@ -32,18 +32,13 @@ call plug#begin(g:plugged_home)
   " Better syntax
   Plug 'numirias/semshi'
 
-  " syntax check
-  Plug 'w0rp/ale'
+  " git
+  Plug 'tpope/vim-fugitive'
 
   " Autocomplete disable coc in julia files
   Plug 'neoclide/coc.nvim', {'tag' : '*', 'do' : './install.sh'}
 
-  " Formatter
-  Plug 'Chiel92/vim-autoformat'
-
   " Themes
-  Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'dylanaraps/wal.vim'
   Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
   
   " Vim Cheatsheet
@@ -61,13 +56,15 @@ call plug#begin(g:plugged_home)
   " Black code formatter
   Plug 'psf/black', {'tag' : '19.10b0'}
 
+  " slime to send commands to terminal
+  Plug 'jpalardy/vim-slime'
+
   " Julia support
   Plug 'JuliaEditorSupport/julia-vim'
   Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
-  "Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+  Plug 'kdheepak/JuliaFormatter.vim'
 
-  " Surround
-  Plug 'tpope/vim-surround'
+  "Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
 
   " Testing
   Plug 'vim-test/vim-test'
@@ -76,12 +73,6 @@ call plug#begin(g:plugged_home)
   Plug 'wakatime/vim-wakatime'
   " folding
   "Plug 'tmhedberg/SimpylFold'
-  "
-  "Tags
-  Plug 'majutsushi/tagbar'
-
-  " smooth scroll
-  " Plug 'yuttie/comfortable-motion.vim'
 
   " easy motions
   Plug 'easymotion/vim-easymotion'
@@ -89,13 +80,8 @@ call plug#begin(g:plugged_home)
   " gives us lists of key bindings
   Plug 'liuchengxu/vim-which-key'
 
-  " to send commands to tmux panes
-  Plug 'jpalardy/vim-slime'
-  let g:slime_target = "tmux"
-
   " floating terminal
   Plug 'voldikss/vim-floaterm'
-
 
   call plug#end()
 
@@ -103,138 +89,10 @@ set encoding=UTF-8
 
 filetype plugin indent on
 
-" Configurations Part"
-"
-" Use system python in virtual env
-" Figure out the system Python for Neovim.
-if exists("$VIRTUAL_ENV")
-    let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
-else
-    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
-endif
+"####################################################################
+"##################### General vim settings #########################
+"####################################################################
 
-" UI configuration
-syntax on
-syntax enable
-
-"-------------------------slime--------------------------------------------
-let g:slime_target = 'tmux'
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
-let g:slime_dont_ask_default = 1
-
-" ----------------------- vim-which-key -----------------------------------
-set timeoutlen=500
-
-let g:mapleader = "\<Space>"
-let g:maplocalleader = "\<Space>"
-let g:which_key_map = {}
-call which_key#register('<Space>', "g:which_key_map")
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey '<Space>'<CR>
-
-" which key can't figure out the easy-motion mappings
-let g:which_key_map = {" ": 'easy motion (re-input to use)'}
-" -------------------------------------------------------------------------
-
-" True Color Support if it's avaiable in terminal
-if has("termguicolors")
-    set termguicolors
-endif
-"if has("gui_running")
-"  set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:blocks
-"endif
-
-" colorscheme
-" for dark version
-set background=dark
-" set contrast
-"let g:gruvbox_material_background = 'hard'
-"let g:vim_monokai_tasty_italic = 1
-colorscheme monokai_pro
-highlight clear LineNr
-highlight clear SignColumn
-"hi LineNr ctermbg=dark
-" colorscheme wal
-
-" leader key
-nnoremap <SPACE> <Nop>
-let mapleader=" "
-
-"-----------------------------Julia settings---------------------------------
-" fix Julia highlighting
-autocmd BufRead,BufNewFile *.jl set filetype=julia
-" LaTeX to unicode as you type in julia
-let g:latex_to_unicode_auto = 1
-let g:latex_to_unicode_tab = 1
-" tagbar for Julia
-let g:tagbar_type_julia = {
-    \ 'ctagstype' : 'julia',
-    \ 'kinds'     : [
-        \ 't:struct', 'f:function', 'm:macro', 'c:const']
-    \ }
-
-" ctags config location
-let g:tagbar_ctags_options = ['NONE', $HOME.'/.config/ctags']
-"
-"" ----------------------- Julia Language Server ---------------------------
-""  NOTE: you may need to manually do LspInstall julials
-"" -------------------------------------------------------------------------
-lua << EOF
-    require'nvim_lsp'.julials.setup{}
-EOF
-"
-autocmd Filetype julia setlocal omnifunc=v:lua.vim.lsp.omnifunc
-"
-"" show diagnostics when hovering for too long
-autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
-"
-nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <leader>lh    <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
-nnoremap <silent> <leader>lk    <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <leader>lr    <cmd>lua vim.lsp.buf.references()<CR>
-
-" disable obnoxious underlining of everything in the damn universe
-"let g:diagnostic_enable_underline = 0
-" -------------------------------------------------------------------------
-"  (end Julia Language Server)
-" -------------------------------------------------------------------------
-
-"------------------------------------------------------------------------------
-" julia-cell configuration
-"------------------------------------------------------------------------------
-" Use '##' tags to define cells
-let g:julia_cell_delimit_cells_by = 'tags'
-
-" map <Leader>jr to run entire file
-nnoremap <Leader>jr :JuliaCellRun<CR>
-
-" map <Leader>jc to execute the current cell
-nnoremap <Leader>jc :JuliaCellExecuteCell<CR>
-
-" map <Leader>jC to execute the current cell and jump to the next cell
-nnoremap <Leader>jC :JuliaCellExecuteCellJump<CR>
-
-" map <Leader>jl to clear Julia screen
-nnoremap <Leader>jl :JuliaCellClear<CR>
-
-" map <Leader>jp and <Leader>jn to jump to the previous and next cell header
-nnoremap <Leader>jp :JuliaCellPrevCell<CR>
-nnoremap <Leader>jn :JuliaCellNextCell<CR>
-
-" map <Leader>je to execute the current line or current selection
-nmap <Leader>je <Plug>SlimeLineSend
-xmap <Leader>je <Plug>SlimeRegionSend
-"
-"===============================================================================
-
-" test mappings
-nmap <silent> <leader>tn :TestNearest<CR>
-nmap <silent> <leader>tf :TestFile<CR>
-nmap <silent> <leader>ts :TestSuite<CR>
-nmap <silent> <leader>tl :TestLast<CR>
-nmap <silent> <leader>tv :TestVisit<CR>
-let test#strategy = "vimux"
 
 "set termguicolors
 set number
@@ -260,9 +118,18 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 
+" colorscheme
+set background=dark
+colorscheme challenger_deep 
+"highlight clear LineNr
+"highlight clear SignColumn
 
-" vim-autoformat
-noremap <F3> :Autoformat<CR>
+" leader key
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+nmap <leader>q :q<CR>
+nmap <leader>w :w<CR>
+nmap <leader>x :x<CR>
 
 " NERDTree configs
 map <C-n> :NERDTreeToggle<CR>
@@ -271,27 +138,16 @@ nnoremap <silent> <Leader>pv :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-" Ale
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_linters = {'python': ['flake8']}
-
-" Black
-nmap <leader>b :Black<CR>
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'challenger_deep',
       \ 'active': {
       \   'left':  [ [ 'mode', 'paste' ],
       \              [ 'readonly', 'relativepath', 'percent', 'modified' ],
       \            ],
       \   'right': [ [ ],
-      \              [ 'filetype' ],
-      \              [ 'tagbar' ] ]
+      \              [ 'filetype' ]],
       \   },
       \ 'component_function': {
       \   'filetype': 'MyFiletype',
@@ -319,18 +175,11 @@ let g:lightline = {
       \ },
       \ 'component': {
       \   'separator': '',
-      \   'tagbar': '%{tagbar#currenttag("%s", "", "f")}',
       \ },
       \ }
 
 " .rasi syntax
 au BufNewFile,BufRead /*.rasi setf css
-
-" UltiSnips config
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
 
 " Control vim window splits with Alt + Arrow
 map <leader>k  :wincmd k<CR>
@@ -367,10 +216,104 @@ nnoremap <leader>p :set paste<CR> "+p :set nopaste<CR>
 nnoremap <leader>P :set paste<CR> "+P :set nopaste<CR>
 vnoremap <leader>p :set paste<CR> "+p :set nopaste<CR>
 vnoremap <leader>P :set paste<CR> "+P :set nopaste<CR>
+" Configurations Part"
+"
+" Use system python in virtual env
+" Figure out the system Python for Neovim.
+if exists("$VIRTUAL_ENV")
+    let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
+else
+    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+endif
 
-"----------------------------------------------------------------------------
-"------------------------------coc settings----------------------------------
-"----------------------------------------------------------------------------
+" UI configuration
+syntax on
+syntax enable
+
+" vim which key
+set timeoutlen=500
+
+let g:mapleader = "\<Space>"
+let g:maplocalleader = "\<Space>"
+let g:which_key_map = {}
+call which_key#register('<Space>', "g:which_key_map")
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey '<Space>'<CR>
+
+" which key can't figure out the easy-motion mappings
+let g:which_key_map = {" ": 'easy motion (re-input to use)'}
+" 
+
+" True Color Support if it's avaiable in terminal
+if has("termguicolors")
+    set termguicolors
+endif
+
+
+"####################################################################
+"######################### Python settings ##########################
+"####################################################################
+" Black
+nmap <leader>b :Black<CR>
+" test mappings
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
+let test#strategy = "vimux"
+
+"-----------------------------Julia settings---------------------------------
+" fix Julia highlighting
+autocmd BufRead,BufNewFile *.jl set filetype=julia
+" LaTeX to unicode as you type in julia
+let g:latex_to_unicode_auto = 1
+let g:latex_to_unicode_tab = 0
+"
+lua << EOF
+    require'nvim_lsp'.julials.setup{}
+EOF
+"
+autocmd Filetype julia setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"
+"" show diagnostics when hovering for too long
+autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
+"
+nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <leader>lh    <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <silent> <leader>lk    <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <leader>lr    <cmd>lua vim.lsp.buf.references()<CR>
+
+" disable obnoxious underlining of everything in the damn universe
+"let g:diagnostic_enable_underline = 0
+"  (end Julia Language Server)
+
+" julia-cell configuration
+" Use '##' tags to define cells
+let g:julia_cell_delimit_cells_by = 'tags'
+
+" map <Leader>jr to run entire file
+nnoremap <Leader>jr :JuliaCellRun<CR>
+
+" map <Leader>jc to execute the current cell
+nnoremap <Leader>jc :JuliaCellExecuteCell<CR>
+
+" map <Leader>jC to execute the current cell and jump to the next cell
+nnoremap <Leader>jC :JuliaCellExecuteCellJump<CR>
+
+" map <Leader>jl to clear Julia screen
+nnoremap <Leader>jl :JuliaCellClear<CR>
+
+" map <Leader>jp and <Leader>jn to jump to the previous and next cell header
+nnoremap <Leader>jp :JuliaCellPrevCell<CR>
+nnoremap <Leader>jn :JuliaCellNextCell<CR>
+
+
+
+"####################################################################
+"######################### coc settings ##########################
+"####################################################################
 " TextEdit might fail if hidden is not set.
 
 "disable in julia
@@ -509,3 +452,33 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+"####################################################################
+"######################### git settings ##########################
+"####################################################################
+"
+nmap <leader>gs :G<CR>
+nmap <leader>gj :diffget //3<CR>
+nmap <leader>gf :diffget //2<CR>
+
+"####################################################################
+"######################### floaterm ##########################
+"####################################################################
+let g:floaterm_keymap_toggle = '<F1>'
+let g:floaterm_keymap_next   = '<F2>'
+let g:floaterm_keymap_prev   = '<F3>'
+let g:floaterm_keymap_new    = '<F4>'
+
+"####################################################################
+"######################### slime ##########################
+"####################################################################
+" set slime target (tmux instead of screen)
+let g:slime_target = "tmux"
+" set target pane that code is sent to (optional)
+let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
+nmap <c-c><c-x> :%SlimeSend<cr>
+" normal mode mapping
+nnoremap <localleader>jf :JuliaFormatterFormat<CR>
+" visual mode mapping
+vnoremap <localleader>jf :JuliaFormatterFormat<CR>
+
