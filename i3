@@ -243,12 +243,12 @@ exec --no-startup-id xss-lock -- i3lock-fancy
 ##########################################################
 
 #aplicacions
-bindsym $mod+g exec chromium 
+bindsym $mod+g exec brave
 #bindsym $mod+g exec vivaldi-stable 
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
-bindsym $mod+n exec lotion
-bindsym $mod+shift+n exec thunar 
+bindsym $mod+n exec notion-app
+bindsym $mod+shift+n exec dolphin 
 bindsym $mod+shift+b exec --no-startup-id rofi-bluetooth
 bindsym $mod+m exec birdtray --toggle-tb
 #bindsym $mod+shift+Return exec tdrop -a gnome-terminal 

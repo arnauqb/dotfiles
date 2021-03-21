@@ -42,21 +42,15 @@ border-top-color = ${colours.clear}
 padding = 1
 module-margin = 1 
 
-;font-0 = Roboto Slab:size=10:weight=Regular;1
-;font-0 = Poly:size=11:weight=Light;1
-;font-0 = System San Francisco Display:size=10;2
-;font-0 = Hack:weight=Regular:size=10;1
-font-0 = Source Code Pro:weight=Regular:size=10;1
-font-1 = FontAwesome:size=12;3
-font-2 = MaterialIcons:size=13;5
-font-3 = URW Gothic:size=11;2
-font-4 = Raleway VF Beta:size=11:weight=Regular;1
+font-0 = fixed:pixelsize=11;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = "Wuncon Siji:pixelsize=11;1"
 ;http://fontawesome.io/cheatsheet/
 ;https://shanfan.github.io/material-icons-cheatsheet/
 
 modules-left   = prevsong playpause nextsong music memory cpu
 modules-center = i3 
-modules-right  = pavolume battery battery1 wireless-network clock powermenubarlauncher
+modules-right  = pavolume battery battery1 clock 
 
 ; override-redirect = true
 ; wm-restack = i3
@@ -373,7 +367,7 @@ animation-charging-framerate = 600
 
 [module/wireless-network]
 type = internal/network
-interface = wlp4s0
+interface = wlo1
 interval = 1.0
 ping-interval = 3
 format-connected = <label-connected>

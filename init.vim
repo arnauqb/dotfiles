@@ -4,6 +4,7 @@ let g:plugged_home = '~/.vim/plugged'
 call plug#begin(g:plugged_home)
 
   " UI related
+  Plug 'dracula/vim'
   Plug 'chriskempson/base16-vim'
   Plug 'scrooloose/nerdtree'
   Plug 'ctrlpvim/ctrlp.vim'
@@ -15,73 +16,74 @@ call plug#begin(g:plugged_home)
   Plug 'phanviet/vim-monokai-pro'
   Plug 'patstockwell/vim-monokai-tasty'
   Plug 'nerdypepper/vim-colors-plain', { 'branch': 'duotone' }
+  "Plug 'morhetz/gruvbox'
+  Plug 'gruvbox-community/gruvbox'
+  Plug 'tomasr/molokai'
+  Plug 'sickill/vim-monokai'
 
   "tmux
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'benmills/vimux'
 
-  "language support
-  Plug 'neovim/nvim-lsp'
-
-  " repl
+  "" repl
   Plug 'Vigemus/iron.nvim'
 
-  " Better Visual Guide
-  Plug 'Yggdroot/indentLine'
+  "" Better Visual Guide
+  "Plug 'Yggdroot/indentLine'
 
-  " Better syntax
-  Plug 'numirias/semshi'
+  "" Better syntax
+  " Plug 'numirias/semshi'
+  Plug 'nvim-treesitter/nvim-treesitter'
 
-  " git
+  "" git
   Plug 'tpope/vim-fugitive'
 
-  " Autocomplete disable coc in julia files
+  "" Autocomplete disable coc in julia files
   Plug 'neoclide/coc.nvim', {'tag' : '*', 'do' : './install.sh'}
 
-  " Themes
+  "" Themes
   Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-  
-  " Vim Cheatsheet
+  "
+  "" Vim Cheatsheet
   Plug 'liuchengxu/vim-which-key'
 
-  " Vim multi-cursor
+  "" Vim multi-cursor
   Plug 'terryma/vim-multiple-cursors'
 
-  " Devicon glyphs for Nerdtree
+  "" Devicon glyphs for Nerdtree
   Plug 'ryanoasis/vim-devicons'
 
-  " YAML support
+  "" YAML support
   Plug 'stephpy/vim-yaml'
 
-  " Black code formatter
+  "" Black code formatter
   Plug 'psf/black', {'tag' : '19.10b0'}
 
-  " slime to send commands to terminal
+  "" slime to send commands to terminal
   Plug 'jpalardy/vim-slime'
 
-  " Julia support
-  Plug 'JuliaEditorSupport/julia-vim'
+  "" Julia support
+  Plug 'JuliaEditorSupport/julia-vim', {'for' : 'julia'}
   Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
   Plug 'kdheepak/JuliaFormatter.vim'
 
-  "Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+  ""Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
 
-  " Testing
+  "" Testing
   Plug 'vim-test/vim-test'
 
-  " waka waka time
+  "" waka waka time
   Plug 'wakatime/vim-wakatime'
-  " folding
-  "Plug 'tmhedberg/SimpylFold'
 
-  " easy motions
+  "" easy motions
   Plug 'easymotion/vim-easymotion'
 
-  " gives us lists of key bindings
-  Plug 'liuchengxu/vim-which-key'
-
-  " floating terminal
+  "" floating terminal
   Plug 'voldikss/vim-floaterm'
+
+  "" Latex support
+  Plug 'lervag/vimtex'
+
 
   call plug#end()
 
@@ -119,8 +121,10 @@ set shiftwidth=4
 set autoindent
 
 " colorscheme
-set background=dark
-colorscheme challenger_deep 
+"set background=dark
+colorscheme monokai
+"colorscheme gruvbox
+"let g:gruvbox_contrast_dark="hard"
 "highlight clear LineNr
 "highlight clear SignColumn
 
@@ -270,20 +274,20 @@ autocmd BufRead,BufNewFile *.jl set filetype=julia
 let g:latex_to_unicode_auto = 1
 let g:latex_to_unicode_tab = 0
 "
-lua << EOF
-    require'nvim_lsp'.julials.setup{}
-EOF
-"
-autocmd Filetype julia setlocal omnifunc=v:lua.vim.lsp.omnifunc
-"
-"" show diagnostics when hovering for too long
-autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
-"
-nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <leader>lh    <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
-nnoremap <silent> <leader>lk    <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <leader>lr    <cmd>lua vim.lsp.buf.references()<CR>
+"lua << EOF
+"    require'nvim_lsp'.julials.setup{}
+"EOF
+""
+"autocmd Filetype julia setlocal omnifunc=v:lua.vim.lsp.omnifunc
+""
+""" show diagnostics when hovering for too long
+"autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
+""
+"nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.buf.declaration()<CR>
+"nnoremap <silent> <leader>lh    <cmd>lua vim.lsp.buf.hover()<CR>
+"nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
+"nnoremap <silent> <leader>lk    <cmd>lua vim.lsp.buf.signature_help()<CR>
+"nnoremap <silent> <leader>lr    <cmd>lua vim.lsp.buf.references()<CR>
 
 " disable obnoxious underlining of everything in the damn universe
 "let g:diagnostic_enable_underline = 0
@@ -481,4 +485,28 @@ nmap <c-c><c-x> :%SlimeSend<cr>
 nnoremap <localleader>jf :JuliaFormatterFormat<CR>
 " visual mode mapping
 vnoremap <localleader>jf :JuliaFormatterFormat<CR>
+
+"####################################################################
+"######################### vimtex ##########################
+"####################################################################
+" settings for zathura
+let g:vimtex_view_general_viewer = 'zathura'
+"let g:vimtex_view_general_options
+"    \ = '-reuse-instance -forward-search @tex @line @pdf'
+"let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+
+"####################################################################
+"######################### nvim-treesitter ##########################
+"####################################################################
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+}
+EOF
+
+
 

@@ -20,8 +20,8 @@ rofi.color-normal: argb:00000000, #e8e8e8, argb:00000000, argb:00000000, #e56aef
 rofi.color-urgent: argb:00000000, #f43753, argb:00000000, argb:00000000, #e56aef
 rofi.color-active: argb:00000000, #49bbfb, argb:00000000, argb:00000000, #e56aef
 
-! rofi.font: System San Francisco Display 20
-rofi.font: Quicksand 20
+rofi.font: System San Francisco Display 13
+!rofi.font: Quicksand 15
 ! rofi.fg: argb:00ffffff
 rofi.eh: 1
 rofi.line-margin: 20
@@ -38,3 +38,4 @@ rofi.window-format: {w:5} {t}
 rofi.mesg: "hello"
 ! rofi.show-icons: true
 
+Xcursor.size: 16
