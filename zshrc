@@ -21,13 +21,12 @@ eval $(keychain --eval --quiet id_rsa)
 . /home/arnau/dotfiles/z.sh
 
 # Julia
-export PATH="$PATH:/home/arnau/opt/julia-1.6.0-rc1/bin"
+export PATH="$PATH:/home/arnau/opt/julia-1.6.0-rc3/bin"
 ### aliases ##
 alias vi="nvim"
 alias vim="nvim"
 alias l="ls --color=auto -lh"
 alias ls="ls --color=auto"
-alias julia="/home/arnau/opt/julia-1.6.0-rc3/bin/julia"
 alias cosma6="ssh -A dc-quer1@login6.cosma.dur.ac.uk -X"
 alias cosma="ssh -A dc-quer1@login7a.cosma.dur.ac.uk"
 alias jasmin="ssh -A -t arnau@login2.jasmin.ac.uk 'export INPUTRC=~/.inputrc.mine; /bin/bash'"

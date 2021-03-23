@@ -18,9 +18,6 @@ clear = #00
 yellow = #f9a825
 
 [bar/top]
-;monitor = eDP-1
-;monitor = HDMI-2
-;monitor = DP-1
 monitor = ${env:MONITOR:}
 width = 100%
 height = 30
@@ -42,7 +39,7 @@ border-top-color = ${colours.clear}
 padding = 1
 module-margin = 1 
 
-font-0 = fixed:pixelsize=11;1
+font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = "Wuncon Siji:pixelsize=11;1"
 ;http://fontawesome.io/cheatsheet/
