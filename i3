@@ -27,7 +27,7 @@ bindsym --release $mod+Shift+q exec xkill
 bindsym $mod+d exec --no-startup-id rofi -show drun
 
 #youtube trick music
-#bindsym $mod+y fullscreen disable; floating enable; resize set 600 400; sticky enable; move window to position 1940 54
+bindsym $mod+y fullscreen disable; floating enable; resize set 800 400; sticky enable; move window to position 1940 54
 
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -223,7 +223,7 @@ exec "/usr/bin/xmodmap /home/arnau/dotfiles/Xmodmap"
 exec --no-startup-id twmnd
 exec --no-startup xset b off
 exec --no-startup-id nm-applet
-exec_always feh --bg-fill ~/Pictures/wallpaper.png
+exec_always feh --bg-scale ~/Pictures/wallpaper.png
 # exec --no-startup-id compton --config /home/arnau/dotfiles/compton.conf
 exec --no-startup-id redshift-gtk
 exec --no-startup-id flameshot

@@ -21,7 +21,7 @@ eval $(keychain --eval --quiet id_rsa)
 . /home/arnau/dotfiles/z.sh
 
 # Julia
-export PATH="$PATH:/home/arnau/opt/julia-1.6.0-rc3/bin"
+export PATH="$PATH:/home/arnau/opt/julia-1.6.0/bin"
 ### aliases ##
 alias vi="nvim"
 alias vim="nvim"

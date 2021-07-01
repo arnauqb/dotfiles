@@ -16,6 +16,8 @@ call plug#begin(g:plugged_home)
   Plug 'phanviet/vim-monokai-pro'
   Plug 'patstockwell/vim-monokai-tasty'
   Plug 'nerdypepper/vim-colors-plain', { 'branch': 'duotone' }
+  Plug 'srcery-colors/srcery-vim'
+
   "Plug 'morhetz/gruvbox'
   Plug 'gruvbox-community/gruvbox'
   Plug 'tomasr/molokai'
@@ -122,7 +124,8 @@ set autoindent
 
 " colorscheme
 "set background=dark
-colorscheme monokai
+"colorscheme monokai
+colorscheme srcery
 "colorscheme gruvbox
 "let g:gruvbox_contrast_dark="hard"
 "highlight clear LineNr
