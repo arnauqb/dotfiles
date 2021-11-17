@@ -86,6 +86,9 @@ call plug#begin(g:plugged_home)
   "" Latex support
   Plug 'lervag/vimtex'
 
+  "" github copilot
+  Plug 'github/copilot.vim'
+
 
   call plug#end()
 
@@ -494,6 +497,7 @@ vnoremap <localleader>jf :JuliaFormatterFormat<CR>
 "####################################################################
 " settings for zathura
 let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_log_verbose = 1
 "let g:vimtex_view_general_options
 "    \ = '-reuse-instance -forward-search @tex @line @pdf'
 "let g:vimtex_view_general_options_latexmk = '-reuse-instance'

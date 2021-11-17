@@ -30,9 +30,9 @@ alias ls="ls --color=auto"
 alias cosma6="ssh -A dc-quer1@login6.cosma.dur.ac.uk -X"
 alias cosma="ssh -A dc-quer1@login7a.cosma.dur.ac.uk"
 alias jasmin="ssh -A -t arnau@login2.jasmin.ac.uk 'export INPUTRC=~/.inputrc.mine; /bin/bash'"
-alias hartree="ssh -A -l aaq89-hxt01 hcxlogin1.hartree.stfc.ac.uk"
+alias hartree="ssh -A -l aaq89-hxt01 hcxlogin2.hartree.stfc.ac.uk"
 alias cosma5="ssh -l dc-quer1 login.cosma.dur.ac.uk"
-alias jupycosma="ssh -v dc-quer1@login7a.cosma.dur.ac.uk -L 8892:127.0.0.1:8892 -N"
+alias jupycosma="ssh -v dc-quer1@login7a.cosma.dur.ac.uk -L localhost:8892:localhost:8892 -N"
 alias june="conda activate june"
 alias astro="source ~/Documents/qwind/env/bin/activate"
 alias doodle="docker run -v $(pwd)/samples:/nd/samples -v $(pwd)/frames:/nd/frames -it alexjc/neural-doodle"
@@ -43,7 +43,8 @@ alias dualleft='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --left-o
 alias dualright='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --right-of eDP1'
 alias singlemonitor='xrandr --auto --output HDMI2 --off'
 alias screenonly='xrandr --auto --output eDP1 --off'
-alias mountcosma='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma7/data/dp004/dc-quer1 ~/mnt/cosma'
+alias mountcosma='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma/home/dp004/dc-quer1 ~/mnt/cosma'
+alias mountcosma7='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma7/data/dp004/dc-quer1 ~/mnt/cosma'
 alias mountcosma6='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma6/data/dp004/dc-quer1 ~/mnt/cosma6'
 alias mountcovid='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma5/data/durham/covid19 ~/mnt/covid19'
 prompt_context(){}

@@ -45,9 +45,9 @@ font-2 = "Wuncon Siji:pixelsize=11;1"
 ;http://fontawesome.io/cheatsheet/
 ;https://shanfan.github.io/material-icons-cheatsheet/
 
-modules-left   = prevsong playpause nextsong music memory cpu
+modules-left   = prevsong playpause nextsong music memory cpu gpu
 modules-center = i3 
-modules-right  = pavolume battery battery1 clock 
+modules-right  = bluetooth pavolume battery battery1 clock 
 
 ; override-redirect = true
 ; wm-restack = i3
@@ -192,6 +192,13 @@ date =  %{F#e8e8e8}%a %b %d %{F#e8e8e8}%l:%M:%S %p
 label-font = 0
 
 
+[module/gpu]
+type = custom/script
+interval = 0.5
+tail = true
+label = " %output% "
+label-foreground = ${colours.icons}
+exec = ~/.config/polybar/gpu.sh
 
 
 [module/pavolume]
@@ -230,7 +237,6 @@ label-foreground = ${colours.icons}
 tail = true
 exec = ~/.config/polybar/mpris.sh
 #click-left = ~/.config/polybar/musicWorkspaceSwitcher.sh
-
 
 
 [module/playpause]
