@@ -11,6 +11,7 @@ unsetopt BEEP
 export EDITOR="vim"
 export BROWSER="brave"
 export PATH="$PATH:/home/arnau/.gem/ruby/2.7.0/bin"
+export PATH="$PATH:/home/arnau/.local/bin/"
 export CLOUDY_DATA_PATH="/home/arnau/cloudy17/data"
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -67,3 +68,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 conda deactivate
+source /usr/share/nvm/init-nvm.sh
