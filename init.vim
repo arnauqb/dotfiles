@@ -4,41 +4,39 @@ let g:plugged_home = '~/.vim/plugged'
 call plug#begin(g:plugged_home)
 
   " UI related
-  Plug 'dracula/vim'
-  Plug 'chriskempson/base16-vim'
   Plug 'scrooloose/nerdtree'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'itchyny/lightline.vim'
-  Plug 'christoomey/vim-tmux-navigator'                                   " Navigate between tmux and vim with <C>+jkhl
   Plug 'machakann/vim-highlightedyank'
 
   " colorschemes
-  Plug 'phanviet/vim-monokai-pro'
-  Plug 'patstockwell/vim-monokai-tasty'
-  Plug 'nerdypepper/vim-colors-plain', { 'branch': 'duotone' }
+  "Plug 'phanviet/vim-monokai-pro'
+  "Plug 'patstockwell/vim-monokai-tasty'
+  "Plug 'nerdypepper/vim-colors-plain', { 'branch': 'duotone' }
   Plug 'srcery-colors/srcery-vim'
-
   "Plug 'morhetz/gruvbox'
-  Plug 'gruvbox-community/gruvbox'
-  Plug 'tomasr/molokai'
-  Plug 'sickill/vim-monokai'
+  "Plug 'gruvbox-community/gruvbox'
+  "Plug 'tomasr/molokai'
+  "Plug 'sickill/vim-monokai'
+  "Plug 'dracula/vim'
+  "Plug 'chriskempson/base16-vim'
 
   "tmux
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'benmills/vimux'
 
   "" repl
-  Plug 'Vigemus/iron.nvim'
+  "Plug 'Vigemus/iron.nvim'
 
   "" Better Visual Guide
   "Plug 'Yggdroot/indentLine'
 
   "" Better syntax
   " Plug 'numirias/semshi'
-  Plug 'nvim-treesitter/nvim-treesitter'
+  " Plug 'nvim-treesitter/nvim-treesitter'
 
   "" git
-  Plug 'tpope/vim-fugitive'
+  " Plug 'tpope/vim-fugitive'
 
   "" Autocomplete disable coc in julia files
   " Plug 'neoclide/coc.nvim', {'tag' : '*', 'do' : './install.sh'}
@@ -66,7 +64,7 @@ call plug#begin(g:plugged_home)
 
   "" Julia support
   Plug 'JuliaEditorSupport/julia-vim', {'for' : 'julia'}
-  Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
+  "Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
   Plug 'kdheepak/JuliaFormatter.vim'
 
   ""Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
@@ -78,10 +76,10 @@ call plug#begin(g:plugged_home)
   Plug 'wakatime/vim-wakatime'
 
   "" easy motions
-  Plug 'easymotion/vim-easymotion'
+  "Plug 'easymotion/vim-easymotion'
 
   "" floating terminal
-  Plug 'voldikss/vim-floaterm'
+  "Plug 'voldikss/vim-floaterm'
 
   "" Latex support
   Plug 'lervag/vimtex'
@@ -92,6 +90,11 @@ call plug#begin(g:plugged_home)
   " Language server
   Plug 'neovim/nvim-lspconfig'
   Plug 'williamboman/nvim-lsp-installer'
+  " main one
+  Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+  let g:coq_settings = { 'auto_start': v:true }
+  " 9000+ Snippets
+  Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 
 
   call plug#end()
@@ -294,6 +297,11 @@ lua << EOF
         server:setup(opts)
     end)
     require'lspconfig'.julials.setup{}
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+    )
 EOF
 
 autocmd Filetype julia setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -324,32 +332,32 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
 " julia-cell configuration
 " Use '##' tags to define cells
-let g:julia_cell_delimit_cells_by = 'tags'
-
-" map <Leader>jr to run entire file
-nnoremap <Leader>jr :JuliaCellRun<CR>
-
-" map <Leader>jc to execute the current cell
-nnoremap <Leader>jc :JuliaCellExecuteCell<CR>
-
-" map <Leader>jC to execute the current cell and jump to the next cell
-nnoremap <Leader>jC :JuliaCellExecuteCellJump<CR>
-
-" map <Leader>jl to clear Julia screen
-nnoremap <Leader>jl :JuliaCellClear<CR>
-
-" map <Leader>jp and <Leader>jn to jump to the previous and next cell header
-nnoremap <Leader>jp :JuliaCellPrevCell<CR>
-nnoremap <Leader>jn :JuliaCellNextCell<CR>
+"let g:julia_cell_delimit_cells_by = 'tags'
+"
+"" map <Leader>jr to run entire file
+"nnoremap <Leader>jr :JuliaCellRun<CR>
+"
+"" map <Leader>jc to execute the current cell
+"nnoremap <Leader>jc :JuliaCellExecuteCell<CR>
+"
+"" map <Leader>jC to execute the current cell and jump to the next cell
+"nnoremap <Leader>jC :JuliaCellExecuteCellJump<CR>
+"
+"" map <Leader>jl to clear Julia screen
+"nnoremap <Leader>jl :JuliaCellClear<CR>
+"
+"" map <Leader>jp and <Leader>jn to jump to the previous and next cell header
+"nnoremap <Leader>jp :JuliaCellPrevCell<CR>
+"nnoremap <Leader>jn :JuliaCellNextCell<CR>
 
 
 
 "####################################################################
 "######################### coc settings ##########################
 "####################################################################
-"" TextEdit might fail if hidden is not set.
-"
-""disable in julia
+" TextEdit might fail if hidden is not set.
+
+"disable in julia
 "autocmd BufNew,BufEnter *.jl execute "silent! CocDisable"
 "autocmd BufLeave *.jl execute "silent! CocEnable"
 "
@@ -537,6 +545,3 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-
-
-
