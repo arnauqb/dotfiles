@@ -4,31 +4,29 @@ let g:plugged_home = '~/.vim/plugged'
 call plug#begin(g:plugged_home)
 
   " UI related
-  Plug 'dracula/vim'
-  Plug 'chriskempson/base16-vim'
   Plug 'scrooloose/nerdtree'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'itchyny/lightline.vim'
-  Plug 'christoomey/vim-tmux-navigator'                                   " Navigate between tmux and vim with <C>+jkhl
   Plug 'machakann/vim-highlightedyank'
 
   " colorschemes
-  Plug 'phanviet/vim-monokai-pro'
-  Plug 'patstockwell/vim-monokai-tasty'
-  Plug 'nerdypepper/vim-colors-plain', { 'branch': 'duotone' }
+  "Plug 'phanviet/vim-monokai-pro'
+  "Plug 'patstockwell/vim-monokai-tasty'
+  "Plug 'nerdypepper/vim-colors-plain', { 'branch': 'duotone' }
   Plug 'srcery-colors/srcery-vim'
-
   "Plug 'morhetz/gruvbox'
-  Plug 'gruvbox-community/gruvbox'
-  Plug 'tomasr/molokai'
-  Plug 'sickill/vim-monokai'
+  "Plug 'gruvbox-community/gruvbox'
+  "Plug 'tomasr/molokai'
+  "Plug 'sickill/vim-monokai'
+  "Plug 'dracula/vim'
+  "Plug 'chriskempson/base16-vim'
 
   "tmux
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'benmills/vimux'
 
   "" repl
-  Plug 'Vigemus/iron.nvim'
+  "Plug 'Vigemus/iron.nvim'
 
   "" Better Visual Guide
   "Plug 'Yggdroot/indentLine'
@@ -38,10 +36,10 @@ call plug#begin(g:plugged_home)
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 
   "" git
-  Plug 'tpope/vim-fugitive'
+  " Plug 'tpope/vim-fugitive'
 
   "" Autocomplete disable coc in julia files
-  Plug 'neoclide/coc.nvim', {'tag' : '*', 'do' : './install.sh'}
+  " Plug 'neoclide/coc.nvim', {'tag' : '*', 'do' : './install.sh'}
 
   "" Themes
   Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
@@ -67,7 +65,7 @@ call plug#begin(g:plugged_home)
 
   "" Julia support
   Plug 'JuliaEditorSupport/julia-vim', {'for' : 'julia'}
-  Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
+  "Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
   Plug 'kdheepak/JuliaFormatter.vim'
 
   ""Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
@@ -79,16 +77,25 @@ call plug#begin(g:plugged_home)
   Plug 'wakatime/vim-wakatime'
 
   "" easy motions
-  Plug 'easymotion/vim-easymotion'
+  "Plug 'easymotion/vim-easymotion'
 
   "" floating terminal
-  Plug 'voldikss/vim-floaterm'
+  "Plug 'voldikss/vim-floaterm'
 
   "" Latex support
   Plug 'lervag/vimtex'
 
-  "" copilot
-  Plug 'github/copilot.vim'
+  "" github copilot
+  " Plug 'github/copilot.vim'
+
+  " Language server
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'williamboman/nvim-lsp-installer'
+  " main one
+  Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+  let g:coq_settings = { 'auto_start': v:true }
+  " 9000+ Snippets
+  Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 
 
   call plug#end()
@@ -286,6 +293,30 @@ autocmd BufRead,BufNewFile *.jl set filetype=julia
 let g:latex_to_unicode_auto = 1
 let g:latex_to_unicode_tab = 0
 "
+"
+
+lua << EOF
+    local lsp_installer = require("nvim-lsp-installer")
+    lsp_installer.on_server_ready(function(server)
+        local opts = {}
+    
+        server:setup(opts)
+    end)
+    require'lspconfig'.julials.setup{}
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+    )
+EOF
+
+autocmd Filetype julia setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+
 "lua << EOF
 "    require'nvim_lsp'.julials.setup{}
 "EOF
@@ -307,23 +338,23 @@ let g:latex_to_unicode_tab = 0
 
 " julia-cell configuration
 " Use '##' tags to define cells
-let g:julia_cell_delimit_cells_by = 'tags'
-
-" map <Leader>jr to run entire file
-nnoremap <Leader>jr :JuliaCellRun<CR>
-
-" map <Leader>jc to execute the current cell
-nnoremap <Leader>jc :JuliaCellExecuteCell<CR>
-
-" map <Leader>jC to execute the current cell and jump to the next cell
-nnoremap <Leader>jC :JuliaCellExecuteCellJump<CR>
-
-" map <Leader>jl to clear Julia screen
-nnoremap <Leader>jl :JuliaCellClear<CR>
-
-" map <Leader>jp and <Leader>jn to jump to the previous and next cell header
-nnoremap <Leader>jp :JuliaCellPrevCell<CR>
-nnoremap <Leader>jn :JuliaCellNextCell<CR>
+"let g:julia_cell_delimit_cells_by = 'tags'
+"
+"" map <Leader>jr to run entire file
+"nnoremap <Leader>jr :JuliaCellRun<CR>
+"
+"" map <Leader>jc to execute the current cell
+"nnoremap <Leader>jc :JuliaCellExecuteCell<CR>
+"
+"" map <Leader>jC to execute the current cell and jump to the next cell
+"nnoremap <Leader>jC :JuliaCellExecuteCellJump<CR>
+"
+"" map <Leader>jl to clear Julia screen
+"nnoremap <Leader>jl :JuliaCellClear<CR>
+"
+"" map <Leader>jp and <Leader>jn to jump to the previous and next cell header
+"nnoremap <Leader>jp :JuliaCellPrevCell<CR>
+"nnoremap <Leader>jn :JuliaCellNextCell<CR>
 
 
 
@@ -333,141 +364,141 @@ nnoremap <Leader>jn :JuliaCellNextCell<CR>
 " TextEdit might fail if hidden is not set.
 
 "disable in julia
-autocmd BufNew,BufEnter *.jl execute "silent! CocDisable"
-autocmd BufLeave *.jl execute "silent! CocEnable"
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Introduce function text object
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for selections ranges.
-" NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Mappings using CoCList:
-" Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"autocmd BufNew,BufEnter *.jl execute "silent! CocDisable"
+"autocmd BufLeave *.jl execute "silent! CocEnable"
+"
+"" Give more space for displaying messages.
+"set cmdheight=2
+"
+"" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+"" delays and poor user experience.
+"set updatetime=300
+"
+"" Don't pass messages to |ins-completion-menu|.
+"set shortmess+=c
+"
+"" Always show the signcolumn, otherwise it would shift the text each time
+"" diagnostics appear/become resolved.
+"set signcolumn=yes
+"
+"" Use tab for trigger completion with characters ahead and navigate.
+"" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+"" other plugin before putting this into your config.
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
+"
+"" Use <c-space> to trigger completion.
+"inoremap <silent><expr> <c-space> coc#refresh()
+"
+"" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+"" position. Coc only does snippet and additional edit on confirm.
+"if exists('*complete_info')
+"  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+"else
+"  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"endif
+"
+"" Use `[g` and `]g` to navigate diagnostics
+"nmap <silent> [g <Plug>(coc-diagnostic-prev)
+"nmap <silent> ]g <Plug>(coc-diagnostic-next)
+"
+"" GoTo code navigation.
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+"
+"" Use K to show documentation in preview window.
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
+"
+"function! s:show_documentation()
+"  if (index(['vim','help'], &filetype) >= 0)
+"    execute 'h '.expand('<cword>')
+"  else
+"    call CocAction('doHover')
+"  endif
+"endfunction
+"
+"" Highlight the symbol and its references when holding the cursor.
+"autocmd CursorHold * silent call CocActionAsync('highlight')
+"
+"" Symbol renaming.
+"nmap <leader>rn <Plug>(coc-rename)
+"
+"" Formatting selected code.
+"xmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
+"
+"augroup mygroup
+"  autocmd!
+"  " Setup formatexpr specified filetype(s).
+"  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+"  " Update signature help on jump placeholder.
+"  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+"augroup end
+"
+"" Applying codeAction to the selected region.
+"" Example: `<leader>aap` for current paragraph
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+"nmap <leader>a  <Plug>(coc-codeaction-selected)
+"
+"" Remap keys for applying codeAction to the current line.
+"nmap <leader>ac  <Plug>(coc-codeaction)
+"" Apply AutoFix to problem on the current line.
+"nmap <leader>qf  <Plug>(coc-fix-current)
+"
+"" Introduce function text object
+"" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+"xmap if <Plug>(coc-funcobj-i)
+"xmap af <Plug>(coc-funcobj-a)
+"omap if <Plug>(coc-funcobj-i)
+"omap af <Plug>(coc-funcobj-a)
+"
+"" Use <TAB> for selections ranges.
+"" NOTE: Requires 'textDocument/selectionRange' support from the language server.
+"" coc-tsserver, coc-python are the examples of servers that support it.
+"nmap <silent> <TAB> <Plug>(coc-range-select)
+"xmap <silent> <TAB> <Plug>(coc-range-select)
+"
+"" Add `:Format` command to format current buffer.
+"command! -nargs=0 Format :call CocAction('format')
+"
+"" Add `:Fold` command to fold current buffer.
+"command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+"
+"" Add `:OR` command for organize imports of the current buffer.
+"command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+"
+"" Add (Neo)Vim's native statusline support.
+"" NOTE: Please see `:h coc-status` for integrations with external plugins that
+"" provide custom statusline: lightline.vim, vim-airline.
+"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"
+"" Mappings using CoCList:
+"" Show all diagnostics.
+"nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+"" Manage extensions.
+"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+"" Show commands.
+"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+"" Find symbol of current document.
+"nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+"" Search workspace symbols.
+"nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+"" Do default action for next item.
+"nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+"" Do default action for previous item.
+"nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+"" Resume latest coc list.
+"nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 "####################################################################
 "######################### git settings ##########################
@@ -503,6 +534,7 @@ vnoremap <localleader>jf :JuliaFormatterFormat<CR>
 "####################################################################
 " settings for zathura
 let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_log_verbose = 1
 "let g:vimtex_view_general_options
 "    \ = '-reuse-instance -forward-search @tex @line @pdf'
 "let g:vimtex_view_general_options_latexmk = '-reuse-instance'
@@ -519,6 +551,3 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-
-
-

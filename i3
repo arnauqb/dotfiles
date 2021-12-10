@@ -223,7 +223,7 @@ exec "/usr/bin/xmodmap /home/arnau/dotfiles/Xmodmap"
 exec --no-startup-id twmnd
 exec --no-startup xset b off
 exec --no-startup-id nm-applet
-exec_always feh --bg-scale ~/Pictures/wallpaper.png
+exec_always feh --bg-fill ~/Pictures/wallpaper.png
 # exec --no-startup-id compton --config /home/arnau/dotfiles/compton.conf
 exec --no-startup-id redshift-gtk
 exec --no-startup-id flameshot
@@ -247,7 +247,7 @@ bindsym $mod+g exec brave
 #bindsym $mod+g exec vivaldi-stable 
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
-bindsym $mod+n exec notion-app
+bindsym $mod+n exec todoist
 bindsym $mod+shift+n exec dolphin 
 bindsym $mod+shift+b exec --no-startup-id rofi-bluetooth
 bindsym $mod+m exec birdtray --toggle-tb

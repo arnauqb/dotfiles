@@ -8,11 +8,17 @@ setopt appendhistory
 ## sweet silence ##
 unsetopt BEEP
 # export variables
-export EDITOR="vim"
+export EDITOR="nvim"
+bindkey -e
 export BROWSER="brave"
 export PATH="$PATH:/home/arnau/.gem/ruby/2.7.0/bin"
+export PATH="$PATH:/home/arnau/.local/bin/"
 export CLOUDY_DATA_PATH="/home/arnau/cloudy17/data"
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# Xspec
+export HEADAS="/opt/heasoft/x86_64-pc-linux-gnu-libc2.33"
+alias heainit='. "/opt/heasoft/x86_64-pc-linux-gnu-libc2.33/headas-init.sh"'
 
 # ssh agent
 eval $(keychain --eval --quiet id_rsa)
@@ -21,7 +27,8 @@ eval $(keychain --eval --quiet id_rsa)
 . /home/arnau/dotfiles/z.sh
 
 # Julia
-export PATH="$PATH:/home/arnau/julia-1.6.1/bin"
+export PATH="$PATH:/home/arnau/opt/julia-1.7.0/bin"
+
 ### aliases ##
 alias nvim="/home/arnau/opt/nvim.appimage"
 alias vi="nvim"
@@ -31,11 +38,11 @@ alias ls="ls --color=auto"
 alias cosma6="ssh -A dc-quer1@login6.cosma.dur.ac.uk -X"
 alias cosma="ssh -A dc-quer1@login7a.cosma.dur.ac.uk"
 alias jasmin="ssh -A -t arnau@login2.jasmin.ac.uk 'export INPUTRC=~/.inputrc.mine; /bin/bash'"
-alias hartree="ssh -A -l aaq89-hxt01 hcxlogin1.hartree.stfc.ac.uk"
+alias hartree="ssh -A -l aaq89-hxt01 hcxlogin2.hartree.stfc.ac.uk"
 alias cosma5="ssh -l dc-quer1 login.cosma.dur.ac.uk"
-alias jupycosma="ssh -v dc-quer1@login7a.cosma.dur.ac.uk -L 8892:127.0.0.1:8892 -N"
+alias jupycosma="ssh -v dc-quer1@login7a.cosma.dur.ac.uk -L localhost:8892:localhost:8892 -N"
 alias june="conda activate june"
-alias astro="source ~/Documents/qwind/env/bin/activate"
+alias astro="conda activate astro"
 alias doodle="docker run -v $(pwd)/samples:/nd/samples -v $(pwd)/frames:/nd/frames -it alexjc/neural-doodle"
 alias dualmonitor='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --left-of eDP1'
 alias dualmonitor2='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --right-of eDP1'
@@ -45,6 +52,7 @@ alias dualright='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --right
 alias singlemonitor='xrandr --auto --output HDMI2 --off'
 alias screenonly='xrandr --auto --output eDP1 --off'
 alias mountcosma='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma/home/dp004/dc-quer1 ~/mnt/cosma'
+alias mountcosma7='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma7/data/dp004/dc-quer1 ~/mnt/cosma'
 alias mountcosma6='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma6/data/dp004/dc-quer1 ~/mnt/cosma6'
 alias mountcovid='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma5/data/durham/covid19 ~/mnt/covid19'
 prompt_context(){}
@@ -67,3 +75,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 conda deactivate
+source /usr/share/nvm/init-nvm.sh
