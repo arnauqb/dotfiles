@@ -21,8 +21,9 @@ eval $(keychain --eval --quiet id_rsa)
 . /home/arnau/dotfiles/z.sh
 
 # Julia
-export PATH="$PATH:/home/arnau/opt/julia-1.6.0/bin"
+export PATH="$PATH:/home/arnau/julia-1.6.1/bin"
 ### aliases ##
+alias nvim="/home/arnau/opt/nvim.appimage"
 alias vi="nvim"
 alias vim="nvim"
 alias l="ls --color=auto -lh"
@@ -43,7 +44,7 @@ alias dualleft='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --left-o
 alias dualright='xrandr --auto --output HDMI2 --mode 1920x1080 --rate 75 --right-of eDP1'
 alias singlemonitor='xrandr --auto --output HDMI2 --off'
 alias screenonly='xrandr --auto --output eDP1 --off'
-alias mountcosma='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma7/data/dp004/dc-quer1 ~/mnt/cosma'
+alias mountcosma='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma/home/dp004/dc-quer1 ~/mnt/cosma'
 alias mountcosma6='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma6/data/dp004/dc-quer1 ~/mnt/cosma6'
 alias mountcovid='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma5/data/durham/covid19 ~/mnt/covid19'
 prompt_context(){}
