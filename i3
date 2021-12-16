@@ -248,7 +248,7 @@ bindsym $mod+g exec brave
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Shift+t exec slack
 bindsym $mod+n exec todoist
-bindsym $mod+shift+n exec dolphin 
+bindsym $mod+shift+n exec thunar
 bindsym $mod+shift+b exec --no-startup-id rofi-bluetooth
 bindsym $mod+m exec birdtray --toggle-tb
 #bindsym $mod+shift+Return exec tdrop -a gnome-terminal 
