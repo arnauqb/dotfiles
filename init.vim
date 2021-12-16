@@ -56,8 +56,8 @@ call plug#begin(g:plugged_home)
   "" YAML support
   Plug 'stephpy/vim-yaml'
 
-  "" Black code formatter
-  Plug 'psf/black', {'tag' : '19.10b0'}
+  "" code formatter
+  Plug 'psf/black'
   Plug 'nvie/vim-flake8'
 
   "" slime to send commands to terminal
