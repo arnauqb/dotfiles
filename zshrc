@@ -75,4 +75,3 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 conda deactivate
-source /usr/share/nvm/init-nvm.sh
