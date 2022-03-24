@@ -237,11 +237,12 @@ vnoremap <leader>P :set paste<CR> "+P :set nopaste<CR>
 "
 " Use system python in virtual env
 " Figure out the system Python for Neovim.
-if exists("$VIRTUAL_ENV")
-    let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
-else
-    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
-endif
+"if exists("$VIRTUAL_ENV")
+"    let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
+"else
+"    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+"endif
+let g:python3_host_prog="/home/arnau/miniconda3/bin/python"
 
 " UI configuration
 syntax on
