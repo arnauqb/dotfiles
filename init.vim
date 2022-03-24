@@ -33,7 +33,7 @@ call plug#begin(g:plugged_home)
 
   "" Better syntax
   " Plug 'numirias/semshi'
-  " Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 
   "" git
   " Plug 'tpope/vim-fugitive'
@@ -56,8 +56,9 @@ call plug#begin(g:plugged_home)
   "" YAML support
   Plug 'stephpy/vim-yaml'
 
-  "" Black code formatter
-  Plug 'psf/black', {'tag' : '19.10b0'}
+  "" code formatter
+  Plug 'psf/black'
+  Plug 'nvie/vim-flake8'
 
   "" slime to send commands to terminal
   Plug 'jpalardy/vim-slime'
@@ -106,6 +107,11 @@ filetype plugin indent on
 "####################################################################
 "##################### General vim settings #########################
 "####################################################################
+
+"spelling checks
+set spell spelllang=en_gb
+" set spell spelllang=en_gb
+" ]s [s to move, zg to add to dictionary, z= to suggest
 
 
 "set termguicolors

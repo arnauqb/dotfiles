@@ -28,7 +28,9 @@ eval $(keychain --eval --quiet id_rsa)
 
 # Julia
 export PATH="$PATH:/home/arnau/opt/julia-1.7.0/bin"
+
 ### aliases ##
+alias nvim="/home/arnau/opt/nvim.appimage"
 alias vi="nvim"
 alias vim="nvim"
 alias l="ls --color=auto -lh"
@@ -75,4 +77,3 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 conda deactivate
-source /usr/share/nvm/init-nvm.sh
