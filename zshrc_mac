@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,13 +103,23 @@ alias vi="nvim"
 alias cosma="ssh -A dc-quer1@login7a.cosma.dur.ac.uk"
 alias jupycosma="ssh -v dc-quer1@login7a.cosma.dur.ac.uk -L localhost:8892:localhost:8892 -N"
 alias torch="conda activate torch"
+alias t2="conda activate torch2"
+alias p10="conda activate p10"
 alias june="conda activate june"
 alias base="conda activate base"
 alias mountcosma='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma/home/dp004/dc-quer1 ~/mnt/cosma'
+alias mountcosma7='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma7/data/dp004/dc-quer1 ~/mnt/cosma7'
+alias mountcosma6='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma6/data/dp004/dc-quer1 ~/mnt/cosma6'
 
-. /opt/homebrew/etc/profile.d/z.sh
+alias vic="cd ~/.config/nvim/lua/user"
 
 export NVM_DIR="$HOME/.nvm"
+export LD_LIBRARY_PATH=/Users/arnull/code/MultiNest/lib/:$LD_LIBRARY_PATH
+export PATH=$PATH:$HOME/.local/bin/
+export DYLD_LIBRARY_PATH=/Users/arnull/code/MultiNest/lib
+export OPENAI_API_KEY="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"
+
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 

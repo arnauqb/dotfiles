@@ -17,7 +17,8 @@ call plug#begin(g:plugged_home)
   "Plug 'morhetz/gruvbox'
   "Plug 'gruvbox-community/gruvbox'
   "Plug 'tomasr/molokai'
-  "Plug 'sickill/vim-monokai'
+  Plug 'sickill/vim-monokai'
+  Plug 'tanvirtin/monokai.nvim'
   "Plug 'dracula/vim'
   "Plug 'chriskempson/base16-vim'
   Plug 'kaicataldo/material.vim'
@@ -142,7 +143,7 @@ set autoindent
 " colorscheme
 "set background=dark
 "colorscheme monokai
-colorscheme material
+colorscheme monokai_pro
 "colorscheme gruvbox
 "let g:gruvbox_contrast_dark="hard"
 "highlight clear LineNr

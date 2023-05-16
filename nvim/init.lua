@@ -44,7 +44,7 @@ vim.opt.autoindent = true
 
 
 -- Set color scheme
-vim.cmd('colorscheme astrodark')
+vim.cmd('colorscheme monokai-pro')
 
 
 -- keybindings
@@ -56,6 +56,9 @@ vim.api.nvim_set_keymap('n', '<leader>ts', ':TestSuite<CR>', { noremap = true, s
 vim.api.nvim_set_keymap('n', '<leader>tl', ':TestLast<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>tv', ':TestVisit<CR>', { noremap = true, silent = true })
 vim.g["test#strategy"] = "vimux"
+vim.g.VimuxOrientation = "v"
+vim.api.nvim_set_keymap('n', '<Leader>vl', ':VimuxRunLastCommand<CR>', { noremap = true })
+
 
 -- vim-slime
 vim.g.slime_target = "tmux"
