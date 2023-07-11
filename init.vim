@@ -17,9 +17,11 @@ call plug#begin(g:plugged_home)
   "Plug 'morhetz/gruvbox'
   "Plug 'gruvbox-community/gruvbox'
   "Plug 'tomasr/molokai'
-  "Plug 'sickill/vim-monokai'
+  Plug 'sickill/vim-monokai'
+  Plug 'tanvirtin/monokai.nvim'
   "Plug 'dracula/vim'
   "Plug 'chriskempson/base16-vim'
+  Plug 'kaicataldo/material.vim'
 
   "tmux
   Plug 'christoomey/vim-tmux-navigator'
@@ -141,7 +143,7 @@ set autoindent
 " colorscheme
 "set background=dark
 "colorscheme monokai
-colorscheme srcery
+colorscheme monokai_pro
 "colorscheme gruvbox
 "let g:gruvbox_contrast_dark="hard"
 "highlight clear LineNr
@@ -248,7 +250,8 @@ vnoremap <leader>P :set paste<CR> "+P :set nopaste<CR>
 "else
 "    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
 "endif
-let g:python3_host_prog="/home/arnau/miniconda3/bin/python"
+"let g:python3_host_prog="/home/arnau/miniconda3/bin/python"
+let g:python3_host_prog="/Users/arnull/miniconda3/bin/python"
 
 " UI configuration
 syntax on
@@ -545,7 +548,7 @@ let g:vimtex_log_verbose = 1
 "####################################################################
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+ensure_installed = {"python", "julia"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = { "c", "rust" },  -- list of language that will be disabled
