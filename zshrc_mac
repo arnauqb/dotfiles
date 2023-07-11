@@ -141,3 +141,6 @@ unset __conda_setup
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
+# init ruby
+eval "$(rbenv init - zsh)"
+

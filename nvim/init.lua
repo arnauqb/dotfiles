@@ -45,6 +45,8 @@ vim.opt.autoindent = true
 
 -- Set color scheme
 vim.cmd('colorscheme monokai-pro')
+-- vim.cmd('colorscheme gruvbox')
+-- vim.cmd('set background=light')
 
 
 -- keybindings

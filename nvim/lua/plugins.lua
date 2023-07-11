@@ -15,6 +15,9 @@ return {
 		config = true,
 	},
     {'loctvl842/monokai-pro.nvim'},
+    {'NLKNguyen/papercolor-theme'},
+    { "ellisonleao/gruvbox.nvim" },
+    {"sainnhe/gruvbox-material"},
 	{"preservim/vimux"},
     {"christoomey/vim-tmux-navigator"},
     {
@@ -23,4 +26,6 @@ return {
         config = true,
     },
     {"rebelot/heirline.nvim"},
+    {"tpope/vim-surround"},
+    {"lervag/vimtex"},
 }
