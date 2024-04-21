@@ -121,8 +121,6 @@ export NVM_DIR="$HOME/.nvm"
 export LD_LIBRARY_PATH=/Users/arnull/code/MultiNest/lib/:$LD_LIBRARY_PATH
 export PATH=$PATH:$HOME/.local/bin/
 export DYLD_LIBRARY_PATH=/Users/arnull/code/MultiNest/lib
-***REMOVED***
-***REMOVED***
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 
 
