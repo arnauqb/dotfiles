@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,9 +70,12 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z)
+plugins=(git z vi-mode)
 
 source $ZSH/oh-my-zsh.sh
+
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+
 
 # User configuration
 
@@ -110,14 +113,17 @@ alias base="conda activate base"
 alias mountcosma='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma/home/dp004/dc-quer1 ~/mnt/cosma'
 alias mountcosma7='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma7/data/dp004/dc-quer1 ~/mnt/cosma7'
 alias mountcosma6='sshfs dc-quer1@login7a.cosma.dur.ac.uk:/cosma6/data/dp004/dc-quer1 ~/mnt/cosma6'
+alias conway="ssh -A arnau@conway.cs.ox.ac.uk"
 
-alias vic="cd ~/.config/nvim/lua/user"
+alias vic="cd ~/.config/nvim"
 
 export NVM_DIR="$HOME/.nvm"
 export LD_LIBRARY_PATH=/Users/arnull/code/MultiNest/lib/:$LD_LIBRARY_PATH
 export PATH=$PATH:$HOME/.local/bin/
 export DYLD_LIBRARY_PATH=/Users/arnull/code/MultiNest/lib
-export OPENAI_API_KEY="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"
+***REMOVED***
+***REMOVED***
+export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -143,4 +149,21 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # init ruby
 eval "$(rbenv init - zsh)"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/arnull/code/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/arnull/code/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/arnull/code/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/arnull/code/google-cloud-sdk/completion.zsh.inc'; fi
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/Users/arnull/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
+eval "$(starship init zsh)"
 

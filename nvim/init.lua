@@ -1,5 +1,5 @@
 -- python path
-vim.g.python3_host_prog = '/Users/arnull/miniconda3/bin/python'
+vim.g.python3_host_prog = '/Users/arnull/miniconda3/envs/nvim/bin/python'
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -15,6 +15,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.maplocalleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup("plugins")
 
@@ -70,9 +71,6 @@ vim.cmd([[let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0)
 --black
 vim.api.nvim_set_keymap('n', '<leader>b', ':call Black()<CR>', { noremap = true, silent = true })
 
-
-
-
 -- change tabs
 vim.api.nvim_set_keymap('n', '<leader>1', '1gt', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>2', '2gt', { noremap = true })
@@ -96,7 +94,91 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 -- map("n", "<Leader>ad", ":ChatGPTRun docstring <CR>", { silent = true })
 -- map("n", "<Leader>ab", ":ChatGPTRun fix_bugs <CR>", { silent = true })
 
-
-
 -- language server
 require'lspconfig'.pyright.setup{}
+
+-- image.nvim
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
+
+require("image").setup({
+  backend = "kitty",
+  integrations = {
+    markdown = {
+      enabled = true,
+      clear_in_insert_mode = false,
+      download_remote_images = true,
+      only_render_image_at_cursor = false,
+      filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+    },
+    neorg = {
+      enabled = true,
+      clear_in_insert_mode = false,
+      download_remote_images = true,
+      only_render_image_at_cursor = false,
+      filetypes = { "norg" },
+    },
+  },
+  max_width = 200,
+  max_height = 22,
+  max_width_window_percentage = math.huge,
+  max_height_window_percentage = math.huge,
+  window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
+  window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+  editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+  tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+  hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
+})
+
+-- molten-nvim
+vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>",
+    { silent = true, desc = "Initialize the plugin" })
+vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>",
+    { silent = true, desc = "run operator selection" })
+vim.keymap.set("n", "<localleader>rl", ":MoltenEvaluateLine<CR>",
+    { silent = true, desc = "evaluate line" })
+vim.keymap.set("n", "<localleader>rr", ":MoltenReevaluateCell<CR>",
+    { silent = true, desc = "re-evaluate cell" })
+vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv",
+    { silent = true, desc = "evaluate visual selection" })
+vim.keymap.set("n", "<localleader>rd", ":MoltenDelete<CR>",
+    { silent = true, desc = "molten delete cell" })
+vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>",
+    { silent = true, desc = "hide output" })
+vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>",
+    { silent = true, desc = "show/enter output" })
+
+-- quarto
+require('quarto').setup{
+  debug = false,
+  closePreviewOnExit = true,
+  lspFeatures = {
+    enabled = true,
+    chunks = "curly",
+    languages = { "r", "python", "julia", "bash", "html" },
+    diagnostics = {
+      enabled = true,
+      triggers = { "BufWritePost" },
+    },
+    completion = {
+      enabled = true,
+    },
+  },
+  codeRunner = {
+    enabled = false,
+    default_method = nil, -- 'molten' or 'slime'
+    ft_runners = {}, -- filetype to runner, ie. `{ python = "molten" }`.
+                     -- Takes precedence over `default_method`
+    never_run = { "yaml" }, -- filetypes which are never sent to a code runner
+  },
+  keymap = {
+    -- set whole section or individual keys to `false` to disable
+    hover = "K",
+    definition = "gd",
+    type_definition = "gD",
+    rename = "<leader>lR",
+    format = "<leader>lf",
+    references = "gr",
+    document_symbols = "gS",
+  }
+}
