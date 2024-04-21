@@ -10,7 +10,7 @@ unsetopt BEEP
 # export variables
 export EDITOR="nvim"
 bindkey -e
-export BROWSER="brave"
+export BROWSER="firefox"
 export PATH="$PATH:/home/arnau/.gem/ruby/2.7.0/bin"
 export PATH="$PATH:/home/arnau/.local/bin/"
 export CLOUDY_DATA_PATH="/home/arnau/cloudy17/data"
@@ -30,7 +30,6 @@ eval $(keychain --eval --quiet id_rsa)
 export PATH="$PATH:/home/arnau/opt/julia-1.7.0/bin"
 
 ### aliases ##
-alias nvim="/home/arnau/opt/nvim.appimage"
 alias vi="nvim"
 alias vim="nvim"
 alias l="ls --color=auto -lh"
@@ -76,4 +75,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-conda deactivate
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
