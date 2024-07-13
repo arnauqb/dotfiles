@@ -7,7 +7,7 @@ return {
 	{"vim-test/vim-test"},
     {"github/copilot.vim"},
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        'nvim-telescope/telescope.nvim', tag = '0.1.4',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 	{
@@ -18,6 +18,7 @@ return {
     {'NLKNguyen/papercolor-theme'},
     {'ellisonleao/gruvbox.nvim'},
     {'sainnhe/gruvbox-material'},
+    {'lukas-reineke/lsp-format.nvim'},
 	{"preservim/vimux"},
     {"christoomey/vim-tmux-navigator"},
     {
@@ -29,7 +30,6 @@ return {
     {"tpope/vim-surround"},
     {"lervag/vimtex"},
     {"JuliaEditorSupport/julia-vim"},
-    {'dccsillag/magma-nvim', run = ':UpdateRemotePlugins'},
     {"vhyrro/luarocks.nvim",
         priority = 1001, -- this plugin needs to run before anything else
         opts = {
@@ -40,18 +40,6 @@ return {
         "3rd/image.nvim",
         dependencies = { "luarocks.nvim" },
     },
-    {
-        "benlubas/molten-nvim",
-        version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
-        dependencies = { "3rd/image.nvim" },
-        build = ":UpdateRemotePlugins",
-        init = function()
-            -- these are examples, not defaults. Please see the readme
-            vim.g.molten_image_provider = "image.nvim"
-            vim.g.molten_output_win_max_height = 20
-        end,
-    },
-    {'goerz/jupytext.vim'},
     {'jmbuhr/otter.nvim'},
     {'hrsh7th/nvim-cmp'},
     {'quarto-dev/quarto-nvim'},

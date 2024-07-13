@@ -96,6 +96,31 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- language server
 require'lspconfig'.pyright.setup{}
+require("lsp-format").setup {}
+require("lspconfig").gopls.setup { on_attach = require("lsp-format").on_attach }
+local on_attach = function(client, bufnr)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = bufnr }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>rf', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<leader>f', function()
+        print("formatting...")
+        vim.lsp.buf.format { async = true }
+        print("Formatting done!")
+    end, opts)
+
+
+    print("Language server started: " .. client.name)
+end
+require'lspconfig'.julials.setup{on_attach = on_attach}
 
 -- image.nvim
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
@@ -129,24 +154,6 @@ require("image").setup({
   tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
   hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
 })
-
--- molten-nvim
-vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>",
-    { silent = true, desc = "Initialize the plugin" })
-vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>",
-    { silent = true, desc = "run operator selection" })
-vim.keymap.set("n", "<localleader>rl", ":MoltenEvaluateLine<CR>",
-    { silent = true, desc = "evaluate line" })
-vim.keymap.set("n", "<localleader>rr", ":MoltenReevaluateCell<CR>",
-    { silent = true, desc = "re-evaluate cell" })
-vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv",
-    { silent = true, desc = "evaluate visual selection" })
-vim.keymap.set("n", "<localleader>rd", ":MoltenDelete<CR>",
-    { silent = true, desc = "molten delete cell" })
-vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>",
-    { silent = true, desc = "hide output" })
-vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>",
-    { silent = true, desc = "show/enter output" })
 
 -- quarto
 require('quarto').setup{
