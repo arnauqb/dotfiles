@@ -1,3 +1,7 @@
+if vim.g.vscode then
+    
+else
+
 -- python path
 vim.g.python3_host_prog = '/Users/arnull/miniconda3/envs/nvim/bin/python'
 
@@ -45,7 +49,7 @@ vim.opt.autoindent = true
 
 
 -- Set color scheme
-vim.cmd('colorscheme monokai-pro')
+vim.cmd('colorscheme catppuccin-mocha')
 -- vim.cmd('colorscheme gruvbox')
 -- vim.cmd('set background=light')
 
@@ -189,3 +193,4 @@ require('quarto').setup{
     document_symbols = "gS",
   }
 }
+end

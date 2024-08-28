@@ -123,6 +123,8 @@ export PATH=$PATH:$HOME/.local/bin/
 #export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 export QUARTO_PYTHON="/Users/arnull/miniconda3/envs/torch2/bin/python"
 
+## API keys
+export ANTRHOPIC_API_KEY=$(cat /Users/arnull/.api_keys/anthropic)
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
